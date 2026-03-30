@@ -2894,14 +2894,14 @@
             </div>
             <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap;">
               <div class="field" style="margin-bottom:0;max-width:140px;">
-                <label for="delivZip">ZIP Code</label>
-                <input type="text" id="delivZip" name="delivZip" inputmode="numeric" maxlength="10" />
+                <label for="delivZip">ZIP Code <span style="color:#c0392b;">*</span></label>
+                <input type="text" id="delivZip" name="delivZip" inputmode="numeric" maxlength="10" required />
               </div>
-              <div class="field" style="margin-bottom:0;flex:1;min-width:160px;">
+              <div class="field" id="delivCityField" style="margin-bottom:0;flex:1;min-width:160px;display:none;">
                 <label for="delivCity">City</label>
                 <input type="text" id="delivCity" name="delivCity" readonly style="background:var(--off-white);color:var(--gray-500);" />
               </div>
-              <div class="field" style="margin-bottom:0;max-width:100px;">
+              <div class="field" id="delivStateField" style="margin-bottom:0;max-width:100px;display:none;">
                 <label for="delivState">State</label>
                 <input type="text" id="delivState" name="delivState" maxlength="2" readonly style="background:var(--off-white);color:var(--gray-500);text-transform:uppercase;" />
               </div>
@@ -3004,6 +3004,8 @@
     const zipInput = document.getElementById('delivZip');
     const cityInput = document.getElementById('delivCity');
     const stateInput = document.getElementById('delivState');
+    const cityField  = document.getElementById('delivCityField');
+    const stateField = document.getElementById('delivStateField');
     if (zipInput) {
       zipInput.addEventListener('input', function () {
         const zip = this.value.trim();
@@ -3014,15 +3016,21 @@
               if (data && data.places && data.places[0]) {
                 cityInput.value = data.places[0]['place name'];
                 stateInput.value = data.places[0]['state abbreviation'];
+                cityField.style.display  = '';
+                stateField.style.display = '';
               } else {
                 cityInput.value = '';
                 stateInput.value = '';
+                cityField.style.display  = 'none';
+                stateField.style.display = 'none';
               }
             })
             .catch(() => {});
         } else {
           cityInput.value = '';
           stateInput.value = '';
+          cityField.style.display  = 'none';
+          stateField.style.display = 'none';
         }
       });
     }
