@@ -2889,18 +2889,18 @@
               <div class="form-section-step">3</div>
               <div class="form-section-title">Delivery Location <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--gray-400);">— for freight estimate</span></div>
             </div>
-            <div class="field-row-3">
-              <div class="field" style="margin-bottom:0;">
-                <label for="delivCity">City</label>
-                <input type="text" id="delivCity" name="delivCity" />
-              </div>
-              <div class="field" style="margin-bottom:0;">
-                <label for="delivState">State</label>
-                <input type="text" id="delivState" name="delivState" maxlength="2" style="text-transform:uppercase;" />
-              </div>
-              <div class="field" style="margin-bottom:0;">
+            <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap;">
+              <div class="field" style="margin-bottom:0;max-width:140px;">
                 <label for="delivZip">ZIP Code</label>
                 <input type="text" id="delivZip" name="delivZip" inputmode="numeric" maxlength="10" />
+              </div>
+              <div class="field" style="margin-bottom:0;flex:1;min-width:160px;">
+                <label for="delivCity">City</label>
+                <input type="text" id="delivCity" name="delivCity" readonly style="background:var(--off-white);color:var(--gray-500);" />
+              </div>
+              <div class="field" style="margin-bottom:0;max-width:100px;">
+                <label for="delivState">State</label>
+                <input type="text" id="delivState" name="delivState" maxlength="2" readonly style="background:var(--off-white);color:var(--gray-500);text-transform:uppercase;" />
               </div>
             </div>
 
@@ -2997,6 +2997,33 @@
   </footer>
 
   <script>
+    // ZIP code auto-populate city/state
+    const zipInput = document.getElementById('delivZip');
+    const cityInput = document.getElementById('delivCity');
+    const stateInput = document.getElementById('delivState');
+    if (zipInput) {
+      zipInput.addEventListener('input', function () {
+        const zip = this.value.trim();
+        if (zip.length === 5 && /^\d{5}$/.test(zip)) {
+          fetch('https://api.zippopotam.us/us/' + zip)
+            .then(r => r.ok ? r.json() : null)
+            .then(data => {
+              if (data && data.places && data.places[0]) {
+                cityInput.value = data.places[0]['place name'];
+                stateInput.value = data.places[0]['state abbreviation'];
+              } else {
+                cityInput.value = '';
+                stateInput.value = '';
+              }
+            })
+            .catch(() => {});
+        } else {
+          cityInput.value = '';
+          stateInput.value = '';
+        }
+      });
+    }
+
     // Smooth scroll with nav offset
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
