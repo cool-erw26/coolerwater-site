@@ -2941,8 +2941,7 @@
 
             <div class="upload-zone-wrap">
               <label>Upload Logo or Design Files <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-400);">(optional)</span></label>
-              <input type="hidden" name="fileUrls" id="fileUrl" value="" />
-              <input type="hidden" name="fileNames" id="fileName" value="" />
+              <div id="fileHiddenFields"></div>
               <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" multiple style="display:none;" />
               <label for="fileUploadDirect" id="uploadBox" style="display:block;background:var(--off-white);border:2px dashed var(--gray-200);border-radius:0.5rem;padding:1.25rem;text-align:center;cursor:pointer;transition:all 0.2s;">
                 <div id="uploadInner">
@@ -3157,8 +3156,22 @@
     // File upload via Uploadcare API
     var UPLOADCARE_KEY = '47352e02d811bb48b2fc';
     var fileInput      = document.getElementById('fileUploadDirect');
-    var fileUrlField   = document.getElementById('fileUrl');
-    var fileNameField  = document.getElementById('fileName');
+    var fileHiddenFields = document.getElementById('fileHiddenFields');
+
+    function clearFileFields() {
+      if (fileHiddenFields) fileHiddenFields.innerHTML = '';
+    }
+
+    function setFileFields(results) {
+      clearFileFields();
+      results.forEach(function(r, i) {
+        var urlInput  = document.createElement('input');
+        urlInput.type = 'hidden';
+        urlInput.name = 'File ' + (i + 1) + ' — ' + r.name;
+        urlInput.value = r.url;
+        fileHiddenFields.appendChild(urlInput);
+      });
+    }
     var uploadBox      = document.getElementById('uploadBox');
     var uploadInner    = document.getElementById('uploadInner');
 
@@ -3218,8 +3231,7 @@
 
         Promise.all(uploads)
           .then(function(results) {
-            fileUrlField.value  = results.map(function(r) { return r.url; }).join(' | ');
-            fileNameField.value = results.map(function(r) { return r.name; }).join(', ');
+            setFileFields(results);
             setUploadUI('success', results.length === 1 ? results[0].name : results.length + ' files ready');
           })
           .catch(function() {
@@ -3263,8 +3275,7 @@
           btn.disabled = false;
           quoteForm.reset();
           setUploadUI('idle');
-          if (fileUrlField) fileUrlField.value = '';
-          if (fileNameField) fileNameField.value = '';
+          clearFileFields();
         } else {
           alert('Something went wrong. Please try again or email hello@coolerwater.com.');
           btn.textContent = 'Request My Quote →';
