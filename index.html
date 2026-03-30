@@ -3210,7 +3210,7 @@
             .then(function(r) { return r.json(); })
             .then(function(data) {
               if (data.file) {
-                return { url: 'https://ucarecdn.com/' + data.file + '/' + encodeURIComponent(file.name), name: file.name };
+                return { url: 'https://ucarecdn.com/' + data.file + '/', name: file.name };
               }
               throw new Error('Upload failed for ' + file.name);
             });
