@@ -3162,7 +3162,13 @@
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
-      setTimeout(() => {
+      const formData = new FormData(this);
+
+      fetch('https://forminit.com/f/hbks9ekm7hq', {
+        method: 'POST',
+        body: formData
+      })
+      .then(() => {
         this.querySelectorAll('input:not([type="radio"]), select, textarea')
           .forEach(el => el.value = '');
         document.querySelectorAll('input[name="quantity"]')
@@ -3170,7 +3176,12 @@
         document.getElementById('successBanner').style.display = 'block';
         btn.textContent = 'Request My Quote →';
         btn.disabled = false;
-      }, 1000);
+      })
+      .catch(() => {
+        btn.textContent = 'Request My Quote →';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email us at hello@coolerwater.com');
+      });
     });
   </script>
 
