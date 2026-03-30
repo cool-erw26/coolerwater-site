@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:drinkrippl.com)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --no-eslint --no-src-dir --import-alias \"@/*\" --yes)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/morganbryant/.nvm/versions/**)",
+      "Bash(export PATH=\"$PATH:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/opt/node/bin\")",
+      "Read(//opt/homebrew/**)",
+      "Read(//Applications/**)",
+      "WebFetch(domain:cooler-drinks.com)",
+      "Bash(python3 -c \":*)",
+      "Bash(pip3 install:*)",
+      "Bash(sips -s format jpeg -s formatOptions 60 \"/Users/morganbryant/Downloads/IMG_2837.HEIC\" --out /tmp/img2837.jpg)",
+      "Bash(sips -s format jpeg -s formatOptions 60 \"/Users/morganbryant/Downloads/IMG_1402.HEIC\" --out /tmp/img1402.jpg)",
+      "Bash(sips -s format jpeg -s formatOptions 60 \"/Users/morganbryant/Downloads/IMG_1286 2.HEIC\" --out /tmp/img1286.jpg)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(grep -iE \"\\\\.\\(png|svg|pdf\\)$\")",
+      "Bash(find /Users/morganbryant/ -maxdepth 3 -name *.png)",
+      "WebSearch"
+    ]
+  }
+}
