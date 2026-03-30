@@ -2941,25 +2941,25 @@
               <label>Upload Logo or Design Files <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-400);">(optional)</span></label>
               <input type="hidden" name="fileUrl" id="fileUrl" value="" />
               <input type="hidden" name="fileName" id="fileName" value="" />
-              <div id="uploadBox" style="background:var(--off-white);border:2px dashed var(--gray-200);border-radius:0.5rem;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.2s;">
-                <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" style="position:absolute;opacity:0;pointer-events:none;" />
-                <div id="uploadIdle" style="pointer-events:none;">
+              <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" style="display:none;" />
+              <label for="fileUploadDirect" id="uploadBox" style="display:block;background:var(--off-white);border:2px dashed var(--gray-200);border-radius:0.5rem;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.2s;">
+                <div id="uploadIdle">
                   <div style="font-size:1.5rem;margin-bottom:0.35rem;">📎</div>
-                  <div style="font-size:0.8rem;font-weight:600;color:var(--navy);">Click to attach a file</div>
+                  <div style="font-size:0.8rem;font-weight:600;color:var(--navy);">Tap to attach a file</div>
                   <div style="font-size:0.72rem;color:var(--gray-400);margin-top:0.25rem;">PNG · JPG · PDF · SVG · AI · EPS · PSD</div>
                 </div>
-                <div id="uploadProgress" style="display:none;pointer-events:none;">
+                <div id="uploadProgress" style="display:none;">
                   <div style="font-size:0.85rem;font-weight:600;color:var(--gray-500);">⏳ Uploading…</div>
                 </div>
-                <div id="uploadSuccess" style="display:none;pointer-events:none;">
+                <div id="uploadSuccess" style="display:none;">
                   <div style="font-size:1.25rem;margin-bottom:0.25rem;">✅</div>
                   <div id="uploadedFileName" style="font-size:0.8rem;font-weight:600;color:var(--navy);"></div>
                   <div style="font-size:0.72rem;color:var(--gray-400);margin-top:0.2rem;">File ready — will be included with your quote</div>
                 </div>
-                <div id="uploadError" style="display:none;pointer-events:none;">
+                <div id="uploadError" style="display:none;">
                   <div style="font-size:0.8rem;color:#c0392b;">Upload failed. Email your file to hello@coolerwater.com after submitting.</div>
                 </div>
-              </div>
+              </label>
             </div>
 
             <button type="submit" class="submit-btn">Request My Quote &rarr;</button>
@@ -3179,10 +3179,6 @@
       uploadProgress.style.display = state === 'progress' ? '' : 'none';
       uploadSuccess.style.display  = state === 'success'  ? '' : 'none';
       uploadError.style.display    = state === 'error'    ? '' : 'none';
-    }
-
-    if (uploadBox) {
-      uploadBox.addEventListener('click', function() { fileInput.click(); });
     }
 
     if (fileInput) {
