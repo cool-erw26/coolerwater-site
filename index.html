@@ -312,6 +312,16 @@
       color: rgba(29,37,53,0.55);
       margin: 0 auto 1rem;
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 600px) {
+      .hero-tagline {
+        white-space: normal;
+        text-align: center;
+        font-size: 0.8rem;
+      }
     }
 
     .hero-sub {
