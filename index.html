@@ -1285,20 +1285,9 @@
       height: 289px;
     }
     .can-portfolio-inline .can-portfolio-track {
-      animation: canScrollHero 13s linear infinite;
       will-change: transform;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-    }
-    @-webkit-keyframes canScrollHero {
-      0%   { -webkit-transform: translateX(0); transform: translateX(0); }
-      100% { -webkit-transform: translateX(-33.333%); transform: translateX(-33.333%); }
-    }
-    @keyframes canScrollHero {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-33.333%); }
     }
 
     .logo-banner-label {
@@ -3029,6 +3018,44 @@
   </footer>
 
   <script>
+    // JS-driven hero marquee (prevents iOS Safari blank on scroll)
+    (function () {
+      var track = document.querySelector('.can-portfolio-inline .can-portfolio-track');
+      if (!track) return;
+      // Remove CSS animation so JS takes over
+      track.style.animation = 'none';
+      track.style.webkitAnimation = 'none';
+      var totalImages = track.children.length; // 3 sets of 10 = 30
+      var setCount = 3;
+      var pos = 0;
+      var speed = 0.4; // px per frame — tweak for faster/slower
+      var trackWidth = 0;
+
+      function getWidth() {
+        trackWidth = track.scrollWidth / setCount;
+      }
+
+      function step() {
+        pos += speed;
+        if (pos >= trackWidth) pos -= trackWidth;
+        track.style.transform = 'translateX(-' + pos + 'px)';
+        track.style.webkitTransform = 'translateX(-' + pos + 'px)';
+        requestAnimationFrame(step);
+      }
+
+      // Wait for images to load before measuring width
+      window.addEventListener('load', function () {
+        getWidth();
+        requestAnimationFrame(step);
+      });
+
+      // Fallback if already loaded
+      if (document.readyState === 'complete') {
+        getWidth();
+        requestAnimationFrame(step);
+      }
+    })();
+
     // ZIP code auto-populate city/state
     const zipInput = document.getElementById('delivZip');
     const cityInput = document.getElementById('delivCity');
