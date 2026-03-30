@@ -849,6 +849,11 @@
       display: flex;
       width: max-content;
       animation: marquee 35s linear infinite;
+      will-change: transform;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .marquee-track span {
@@ -866,6 +871,10 @@
       margin-right: 2.5rem;
     }
 
+    @-webkit-keyframes marquee {
+      from { -webkit-transform: translateX(0); transform: translateX(0); }
+      to   { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    }
     @keyframes marquee {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
@@ -1234,8 +1243,17 @@
       gap: 3rem;
       width: max-content;
       animation: canScroll 30s linear infinite;
+      will-change: transform;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     .can-portfolio-track:hover { animation-play-state: paused; }
+    @-webkit-keyframes canScroll {
+      0%   { -webkit-transform: translateX(0); transform: translateX(0); }
+      100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    }
     @keyframes canScroll {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
