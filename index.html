@@ -2794,7 +2794,8 @@
           </div>
         </div>
         <div>
-          <form class="form-card" id="quoteForm" action="https://forminit.com/f/hbks9ekm7hq" method="POST" novalidate>
+          <iframe name="forminit_frame" id="forminit_frame" style="display:none;" title="form submit"></iframe>
+          <form class="form-card" id="quoteForm" action="https://forminit.com/f/hbks9ekm7hq" method="POST" target="forminit_frame" novalidate>
             <div class="form-card-title">Request a Custom Quote</div>
             <div class="form-card-sub">We respond within 48 hours. No commitment required.</div>
 
@@ -2938,15 +2939,26 @@
 
             <div class="upload-zone-wrap">
               <label>Upload Logo or Design Files <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-400);">(optional)</span></label>
-              <div style="background:var(--off-white);border:1px dashed var(--gray-200);border-radius:0.5rem;padding:1rem 1.25rem;">
-                <input type="hidden" name="fileUrl" id="fileUrl" value="" />
-                <input type="hidden" name="fileName" id="fileName" value="" />
-                <div id="uploadStatus" style="font-size:0.8rem;color:var(--gray-500);margin-bottom:0.5rem;">PNG · JPG · PDF · SVG · AI · EPS · PSD — logos, mockups, brand guidelines</div>
-                <label id="uploadLabel" style="display:inline-flex;align-items:center;gap:0.5rem;cursor:pointer;background:var(--navy);color:#fff;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 1rem;border-radius:0.35rem;">
-                  <span>&#128206;</span> Choose File
-                  <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" style="display:none;" />
-                </label>
-                <span id="uploadedFileName" style="font-size:0.8rem;color:var(--gray-500);margin-left:0.75rem;"></span>
+              <input type="hidden" name="fileUrl" id="fileUrl" value="" />
+              <input type="hidden" name="fileName" id="fileName" value="" />
+              <div id="uploadBox" style="background:var(--off-white);border:2px dashed var(--gray-200);border-radius:0.5rem;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.2s;">
+                <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" style="position:absolute;opacity:0;pointer-events:none;" />
+                <div id="uploadIdle" style="pointer-events:none;">
+                  <div style="font-size:1.5rem;margin-bottom:0.35rem;">📎</div>
+                  <div style="font-size:0.8rem;font-weight:600;color:var(--navy);">Click to attach a file</div>
+                  <div style="font-size:0.72rem;color:var(--gray-400);margin-top:0.25rem;">PNG · JPG · PDF · SVG · AI · EPS · PSD</div>
+                </div>
+                <div id="uploadProgress" style="display:none;pointer-events:none;">
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--gray-500);">⏳ Uploading…</div>
+                </div>
+                <div id="uploadSuccess" style="display:none;pointer-events:none;">
+                  <div style="font-size:1.25rem;margin-bottom:0.25rem;">✅</div>
+                  <div id="uploadedFileName" style="font-size:0.8rem;font-weight:600;color:var(--navy);"></div>
+                  <div style="font-size:0.72rem;color:var(--gray-400);margin-top:0.2rem;">File ready — will be included with your quote</div>
+                </div>
+                <div id="uploadError" style="display:none;pointer-events:none;">
+                  <div style="font-size:0.8rem;color:#c0392b;">Upload failed. Email your file to hello@coolerwater.com after submitting.</div>
+                </div>
               </div>
             </div>
 
@@ -3151,20 +3163,37 @@
     })();
 
     // File upload via Uploadcare API
-    // IMPORTANT: replace 'YOUR_UPLOADCARE_PUBLIC_KEY' with your actual key from uploadcare.com
     var UPLOADCARE_KEY = '47352e02d811bb48b2fc';
-    var fileInput = document.getElementById('fileUploadDirect');
-    var fileUrlField = document.getElementById('fileUrl');
-    var fileNameField = document.getElementById('fileName');
-    var uploadStatus = document.getElementById('uploadStatus');
-    var uploadedFileName = document.getElementById('uploadedFileName');
+    var fileInput      = document.getElementById('fileUploadDirect');
+    var fileUrlField   = document.getElementById('fileUrl');
+    var fileNameField  = document.getElementById('fileName');
+    var uploadBox      = document.getElementById('uploadBox');
+    var uploadIdle     = document.getElementById('uploadIdle');
+    var uploadProgress = document.getElementById('uploadProgress');
+    var uploadSuccess  = document.getElementById('uploadSuccess');
+    var uploadError    = document.getElementById('uploadError');
+    var uploadedNameEl = document.getElementById('uploadedFileName');
+
+    function showUploadState(state) {
+      uploadIdle.style.display     = state === 'idle'     ? '' : 'none';
+      uploadProgress.style.display = state === 'progress' ? '' : 'none';
+      uploadSuccess.style.display  = state === 'success'  ? '' : 'none';
+      uploadError.style.display    = state === 'error'    ? '' : 'none';
+    }
+
+    if (uploadBox) {
+      uploadBox.addEventListener('click', function() { fileInput.click(); });
+    }
 
     if (fileInput) {
       fileInput.addEventListener('change', function () {
         var file = this.files[0];
         if (!file) return;
-        uploadStatus.textContent = 'Uploading…';
-        uploadedFileName.textContent = '';
+
+        // Show filename immediately before upload
+        uploadedNameEl.textContent = file.name;
+        showUploadState('progress');
+        uploadBox.style.borderColor = '#1D2535';
 
         var formData = new FormData();
         formData.append('UPLOADCARE_PUB_KEY', UPLOADCARE_KEY);
@@ -3181,67 +3210,54 @@
             var url = 'https://ucarecdn.com/' + data.file + '/' + encodeURIComponent(file.name);
             fileUrlField.value = url;
             fileNameField.value = file.name;
-            uploadStatus.textContent = '✓ File attached:';
-            uploadedFileName.textContent = file.name;
-            uploadedFileName.style.color = 'var(--navy)';
+            uploadedNameEl.textContent = file.name;
+            showUploadState('success');
+            uploadBox.style.borderColor = '#27ae60';
           } else {
-            uploadStatus.textContent = 'Upload failed — you can email your files to hello@coolerwater.com';
+            showUploadState('error');
+            uploadBox.style.borderColor = '#c0392b';
           }
         })
         .catch(function() {
-          uploadStatus.textContent = 'Upload failed — you can email your files to hello@coolerwater.com';
+          showUploadState('error');
+          uploadBox.style.borderColor = '#c0392b';
         });
       });
     }
 
-    document.getElementById('quoteForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+    var quoteForm = document.getElementById('quoteForm');
+    var forminit_frame = document.getElementById('forminit_frame');
 
-      const first   = document.getElementById('firstName').value.trim();
-      const email   = document.getElementById('email').value.trim();
-      const variety = document.getElementById('variety').value;
-      const qty     = document.querySelector('input[name="quantity"]:checked');
+    quoteForm.addEventListener('submit', function(e) {
+      var first   = document.getElementById('firstName').value.trim();
+      var email   = document.getElementById('email').value.trim();
+      var variety = document.getElementById('variety').value;
+      var qty     = document.querySelector('input[name="quantity"]:checked');
 
       if (!first || !email || !variety || !qty) {
+        e.preventDefault();
         alert('Please fill in all required fields.');
         return;
       }
 
-      const btn = this.querySelector('.submit-btn');
+      var btn = this.querySelector('.submit-btn');
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
-      // Build URL-encoded payload from all form fields
-      const formData = new FormData(this);
-      const params = new URLSearchParams();
-      formData.forEach(function(value, key) {
-        if (value && value.toString().trim() !== '') {
-          params.append(key, value);
-        }
-      });
-
-      fetch('https://forminit.com/f/hbks9ekm7hq', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString(),
-        mode: 'no-cors'
-      })
-      .then(function() {
+      // Let form POST naturally to hidden iframe — no page navigation
+      forminit_frame.onload = function() {
+        // iframe loaded = forminit received it
         document.getElementById('successBanner').style.display = 'block';
         document.getElementById('successBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
         btn.textContent = 'Request My Quote →';
         btn.disabled = false;
-        document.getElementById('quoteForm').reset();
-        document.getElementById('uploadStatus').textContent = 'PNG · JPG · PDF · SVG · AI · EPS · PSD — logos, mockups, brand guidelines';
-        document.getElementById('uploadedFileName').textContent = '';
+        quoteForm.reset();
+        showUploadState('idle');
+        uploadBox.style.borderColor = '';
         document.getElementById('fileUrl').value = '';
         document.getElementById('fileName').value = '';
-      })
-      .catch(function() {
-        btn.textContent = 'Request My Quote →';
-        btn.disabled = false;
-        alert('Something went wrong. Please email us at hello@coolerwater.com');
-      });
+        forminit_frame.onload = null;
+      };
     });
   </script>
 
