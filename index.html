@@ -2941,14 +2941,14 @@
 
             <div class="upload-zone-wrap">
               <label>Upload Logo or Design Files <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-400);">(optional)</span></label>
-              <input type="hidden" name="fileUrl" id="fileUrl" value="" />
-              <input type="hidden" name="fileName" id="fileName" value="" />
-              <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" style="display:none;" />
+              <input type="hidden" name="fileUrls" id="fileUrl" value="" />
+              <input type="hidden" name="fileNames" id="fileName" value="" />
+              <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" multiple style="display:none;" />
               <label for="fileUploadDirect" id="uploadBox" style="display:block;background:var(--off-white);border:2px dashed var(--gray-200);border-radius:0.5rem;padding:1.25rem;text-align:center;cursor:pointer;transition:all 0.2s;">
                 <div id="uploadInner">
                   <div style="font-size:1.5rem;margin-bottom:0.35rem;">📎</div>
-                  <div style="font-size:0.8rem;font-weight:600;color:var(--navy);">Tap to attach a file</div>
-                  <div style="font-size:0.72rem;color:var(--gray-400);margin-top:0.25rem;">PNG · JPG · PDF · SVG · AI · EPS · PSD</div>
+                  <div style="font-size:0.8rem;font-weight:600;color:var(--navy);">Tap to attach files</div>
+                  <div style="font-size:0.72rem;color:var(--gray-400);margin-top:0.25rem;">PNG · JPG · PDF · SVG · AI · EPS · PSD &nbsp;·&nbsp; Up to 5 files</div>
                 </div>
               </label>
             </div>
@@ -3189,34 +3189,42 @@
 
     if (fileInput) {
       fileInput.addEventListener('change', function () {
-        var file = this.files[0];
-        if (!file) return;
+        var files = Array.prototype.slice.call(this.files);
+        if (!files.length) return;
+        if (files.length > 5) {
+          alert('Please select up to 5 files at a time.');
+          this.value = '';
+          return;
+        }
 
-        setUploadUI('progress', file.name);
+        var names = files.map(function(f) { return f.name; }).join(', ');
+        setUploadUI('progress', files.length === 1 ? files[0].name : files.length + ' files');
 
-        var formData = new FormData();
-        formData.append('UPLOADCARE_PUB_KEY', UPLOADCARE_KEY);
-        formData.append('UPLOADCARE_STORE', '1');
-        formData.append('file', file);
-
-        fetch('https://upload.uploadcare.com/base/', {
-          method: 'POST',
-          body: formData
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data.file) {
-            var url = 'https://ucarecdn.com/' + data.file + '/' + encodeURIComponent(file.name);
-            fileUrlField.value = url;
-            fileNameField.value = file.name;
-            setUploadUI('success', file.name);
-          } else {
-            setUploadUI('error');
-          }
-        })
-        .catch(function() {
-          setUploadUI('error');
+        // Upload each file to Uploadcare in parallel
+        var uploads = files.map(function(file) {
+          var fd = new FormData();
+          fd.append('UPLOADCARE_PUB_KEY', UPLOADCARE_KEY);
+          fd.append('UPLOADCARE_STORE', '1');
+          fd.append('file', file);
+          return fetch('https://upload.uploadcare.com/base/', { method: 'POST', body: fd })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              if (data.file) {
+                return { url: 'https://ucarecdn.com/' + data.file + '/' + encodeURIComponent(file.name), name: file.name };
+              }
+              throw new Error('Upload failed for ' + file.name);
+            });
         });
+
+        Promise.all(uploads)
+          .then(function(results) {
+            fileUrlField.value  = results.map(function(r) { return r.url; }).join(' | ');
+            fileNameField.value = results.map(function(r) { return r.name; }).join(', ');
+            setUploadUI('success', results.length === 1 ? results[0].name : results.length + ' files ready');
+          })
+          .catch(function() {
+            setUploadUI('error');
+          });
       });
     }
 
