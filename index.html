@@ -3194,25 +3194,15 @@
       });
     }
 
-    // Show success banner if redirected back from forminit
-    if (window.location.search.includes('submitted=true')) {
-      var banner = document.getElementById('successBanner');
-      if (banner) {
-        banner.style.display = 'block';
-        banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      // Clean the URL
-      window.history.replaceState({}, document.title, window.location.pathname + '#get-quote');
-    }
-
     document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
       const first   = document.getElementById('firstName').value.trim();
       const email   = document.getElementById('email').value.trim();
       const variety = document.getElementById('variety').value;
       const qty     = document.querySelector('input[name="quantity"]:checked');
 
       if (!first || !email || !variety || !qty) {
-        e.preventDefault();
         alert('Please fill in all required fields.');
         return;
       }
@@ -3220,7 +3210,38 @@
       const btn = this.querySelector('.submit-btn');
       btn.textContent = 'Sending…';
       btn.disabled = true;
-      // Allow native form POST to proceed to forminit
+
+      // Build URL-encoded payload from all form fields
+      const formData = new FormData(this);
+      const params = new URLSearchParams();
+      formData.forEach(function(value, key) {
+        if (value && value.toString().trim() !== '') {
+          params.append(key, value);
+        }
+      });
+
+      fetch('https://forminit.com/f/hbks9ekm7hq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+        mode: 'no-cors'
+      })
+      .then(function() {
+        document.getElementById('successBanner').style.display = 'block';
+        document.getElementById('successBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        btn.textContent = 'Request My Quote →';
+        btn.disabled = false;
+        document.getElementById('quoteForm').reset();
+        document.getElementById('uploadStatus').textContent = 'PNG · JPG · PDF · SVG · AI · EPS · PSD — logos, mockups, brand guidelines';
+        document.getElementById('uploadedFileName').textContent = '';
+        document.getElementById('fileUrl').value = '';
+        document.getElementById('fileName').value = '';
+      })
+      .catch(function() {
+        btn.textContent = 'Request My Quote →';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us at hello@coolerwater.com');
+      });
     });
   </script>
 
