@@ -1,0 +1,7 @@
+{
+  "name": "coolerwater-site",
+  "private": true,
+  "dependencies": {
+    "imagekit": "^5.0.0"
+  }
+}
