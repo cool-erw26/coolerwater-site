@@ -2974,9 +2974,29 @@
               </div>
             </div>
 
-            <div class="field">
-              <label for="eventDate">Event or Needed-By Date</label>
-              <input type="date" id="eventDate" name="eventDate" />
+            <div class="field" style="margin-bottom: 0.5rem;">
+              <span class="qty-label">Production Timeline *</span>
+              <div class="qty-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="qty-opt">
+                  <input type="radio" name="timeline" id="timelineStandard" value="Standard" checked />
+                  <label for="timelineStandard">Standard timeline works</label>
+                </div>
+                <div class="qty-opt">
+                  <input type="radio" name="timeline" id="timelineRush" value="Rush" />
+                  <label for="timelineRush">I need rush production</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-row" id="rushDateFields" style="display:none;">
+              <div class="field">
+                <label for="rushEventDate">Event Date</label>
+                <input type="date" id="rushEventDate" name="rushEventDate" />
+              </div>
+              <div class="field">
+                <label for="rushInHandDate">Required In-Hand Date</label>
+                <input type="date" id="rushInHandDate" name="rushInHandDate" />
+              </div>
             </div>
 
             <div class="form-divider"></div>
@@ -3337,6 +3357,29 @@
           });
       });
     }
+
+    // Standard vs Rush timeline — Rush reveals the two date fields (Standard
+    // doesn't need a date at all); clears them on switching back so a later
+    // Rush selection doesn't submit stale dates.
+    (function () {
+      var timelineRadios = document.querySelectorAll('input[name="timeline"]');
+      var rushFields = document.getElementById('rushDateFields');
+      var rushEventDate = document.getElementById('rushEventDate');
+      var rushInHandDate = document.getElementById('rushInHandDate');
+
+      function updateTimelineFields() {
+        var isRush = document.getElementById('timelineRush').checked;
+        rushFields.style.display = isRush ? 'grid' : 'none';
+        if (!isRush) {
+          rushEventDate.value = '';
+          rushInHandDate.value = '';
+        }
+      }
+
+      Array.prototype.forEach.call(timelineRadios, function (r) {
+        r.addEventListener('change', updateTimelineFields);
+      });
+    })();
 
     // Form submit → Web3Forms via fetch (AJAX, no page redirect)
     var quoteForm = document.getElementById('quoteForm');
