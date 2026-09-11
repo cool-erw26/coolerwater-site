@@ -2581,22 +2581,6 @@
       .geo-strip-h { max-width: none; }
     }
 
-    .nav-links .nav-link {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: var(--gray-600);
-      text-decoration: none;
-      margin-right: 1.25rem;
-      transition: color 0.2s ease;
-      white-space: nowrap;
-    }
-    .nav-links .nav-link:hover { color: var(--navy); }
-
-    @media (max-width: 520px) {
-      .nav-links .nav-link { display: none; }
-    }
-
 
     /* ─── CONVERSION STAT (100% already drink water) ─── */
     .conv-stat-section { padding: 5rem 1.5rem; background: var(--off-white); }
