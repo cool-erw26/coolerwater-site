@@ -1,0 +1,10 @@
+# Cooler Water — coolerwater.com
+User-agent: *
+Allow: /
+
+# Pinterest crawler — image-led discovery is a primary channel
+User-agent: Pinterestbot
+Allow: /
+Crawl-delay: 1
+
+Sitemap: https://coolerwater.com/sitemap.xml
