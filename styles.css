@@ -2894,7 +2894,7 @@
     }
 
     /* ─── CHECKBOX OPTION ────────────────────────────── */
-    .field label.check-opt {
+    #quoteForm label.check-opt {
       display: flex;
       align-items: flex-start;
       gap: 0.55rem;
@@ -2904,7 +2904,7 @@
       letter-spacing: 0;
       font-weight: 400;
     }
-    .field label.check-opt input[type="checkbox"] {
+    #quoteForm label.check-opt input[type="checkbox"] {
       /* .field input strips native appearance and adds full-width padding —
          undo all of it so this renders as a real tick box. */
       -webkit-appearance: checkbox;
@@ -2921,14 +2921,14 @@
       flex: none;
       cursor: pointer;
     }
-    .field label.check-opt span {
-      font-size: 0.8125rem;
+    #quoteForm label.check-opt span {
+      font-size: 0.75rem;
       font-weight: 500;
       line-height: 1.45;
       color: var(--gray-600);
     }
-    .field label.check-opt:hover span { color: var(--charcoal); }
-    .field label.check-opt:has(input:checked) span { color: var(--navy); font-weight: 600; }
+    #quoteForm label.check-opt:hover span { color: var(--charcoal); }
+    #quoteForm label.check-opt:has(input:checked) span { color: var(--navy); font-weight: 600; }
 
     /* ─── MOBILE HERO ORDER ──────────────────────────── */
     /* Put the CTA straight after the headline and paragraph on a phone, so it
@@ -2941,4 +2941,81 @@
       .can-portfolio-inline { order: 3; }
       .hero-right-col     { order: 4; }
       .hero-stats         { order: 5; }
+    }
+
+    /* ─── VENUE TYPES (locations page) ───────────────── */
+    .venue-block {
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .venue-head {
+      font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+
+    .venue-intro {
+      margin-top: 0.65rem;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--gray-600);
+      max-width: 62ch;
+    }
+
+    .venue-grid {
+      display: grid;
+      /* fixed 2 columns, not auto-fit: four items would otherwise land 3+1 and
+         leave the last one stranded on its own row at mid widths */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem 2.5rem;
+      margin-top: 2.25rem;
+    }
+
+    @media (max-width: 640px) {
+      .venue-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .venue-block { margin-top: 2.5rem; padding-top: 2rem; }
+    }
+
+    .venue-col h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.55rem;
+    }
+
+    .venue-col p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--gray-600);
+    }
+
+    /* ─── BRAND USE MOMENTS (locations page) ─────────── */
+    .moment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .moment {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--gray-600);
+      padding-left: 0.9rem;
+      border-left: 2px solid var(--gray-200);
+    }
+
+    .moment strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .moment-grid { grid-template-columns: 1fr; gap: 1.1rem; }
     }
