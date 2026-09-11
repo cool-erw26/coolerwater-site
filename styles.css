@@ -767,7 +767,7 @@
     }
 
     @media (max-width: 640px) {
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
     }
 
     .hero-stat {
@@ -778,8 +778,10 @@
     .hero-stat:last-child { border-right: none; }
 
     @media (max-width: 640px) {
-      .hero-stat:nth-child(2) { border-right: none; }
-      .hero-stat:nth-child(3) { border-top: 1px solid rgba(0,0,0,0.1); }
+      /* three across on mobile — scale type and padding so they fit one row */
+      .hero-stat { padding: 1.25rem 0.3rem; }
+      .hero-stat:nth-child(2) { border-right: 1px solid rgba(0,0,0,0.1); }
+      .hero-stat:nth-child(3) { border-top: none; }
     }
 
     .stat-value {
@@ -796,6 +798,16 @@
       color: rgba(29,37,53,0.4);
       letter-spacing: 0.06em;
       text-transform: uppercase;
+    }
+
+    /* Must come after the base rules above — a media query adds no specificity,
+       so an earlier block would just lose on source order. */
+    @media (max-width: 640px) {
+      .stat-value { font-size: 1.3rem; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.35rem; }
+      .stat-label { font-size: 0.68rem; letter-spacing: 0.02em; line-height: 1.35; }
+      .stat-label span { font-size: 0.58rem !important; letter-spacing: 0 !important; }
+      /* "Both varieties available" is redundant next to "Still & Sparkling" on a phone */
+      .hero-stat:nth-child(3) .stat-label { display: none; }
     }
 
     /* ─── MARQUEE ─────────────────────────────────── */
@@ -1888,6 +1900,9 @@
       min-height: 96px;
     }
 
+    /* the project brief box invites a longer answer, so give it the room */
+    .field textarea#notes { min-height: 150px; }
+
     .field select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%239AA4B2'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -2179,14 +2194,44 @@
     .success-banner {
       display: none;
       margin-top: 1.25rem;
-      background: #edfdf4;
-      border: 1px solid #a3ddb8;
+      background: rgba(29,77,71,0.06);
+      border: 1px solid rgba(29,77,71,0.28);
+      border-left: 3px solid var(--teal);
       border-radius: var(--radius-sm);
       padding: 1rem 1.25rem;
       text-align: center;
       font-size: 0.9rem;
       font-weight: 500;
-      color: #1a6e3f;
+      line-height: 1.6;
+      color: var(--teal);
+    }
+
+    /* ─── FORM VALIDATION ─────────────────────────────── */
+    .form-error-banner {
+      display: none;
+      margin-top: 1.25rem;
+      background: rgba(192,57,43,0.05);
+      border: 1px solid rgba(192,57,43,0.22);
+      border-left: 3px solid #c0392b;
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      line-height: 1.55;
+      color: #97302a;
+    }
+
+    .field-invalid input,
+    .field-invalid select,
+    input.field-invalid,
+    select.field-invalid {
+      border-color: #c0392b !important;
+      background: rgba(192,57,43,0.03);
+    }
+
+    .deliv-grid.field-invalid label,
+    .qty-grid.field-invalid label {
+      border-color: rgba(192,57,43,0.55);
     }
 
     /* ─── FOOTER ──────────────────────────────────── */
@@ -2717,4 +2762,183 @@
 
     @media (max-width: 560px) {
       .deliv-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── TIMELINE ESTIMATE ──────────────────────────── */
+    .timeline-estimate {
+      margin-top: 0.85rem;
+      padding: 0.9rem 1.05rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--gray-200);
+      border-left: 3px solid var(--gray-400);
+      background: var(--off-white);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .timeline-estimate .te-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--navy);
+    }
+
+    .timeline-estimate .te-detail {
+      font-size: 0.75rem;
+      line-height: 1.55;
+      color: var(--gray-600);
+    }
+
+    .te-ok    { border-left-color: var(--teal);  background: rgba(29,77,71,0.04); }
+    .te-ok    .te-title { color: var(--teal); }
+
+    .te-tight { border-left-color: #b8860b; background: rgba(184,134,11,0.05); }
+    .te-tight .te-title { color: #8a6508; }
+
+    .te-warn  { border-left-color: #c0392b; background: rgba(192,57,43,0.05); }
+    .te-warn  .te-title { color: #97302a; }
+
+    .inline-link {
+      color: var(--teal);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      transition: color 0.15s ease;
+    }
+    .inline-link:hover { color: var(--navy); }
+
+
+    /* ─── WATER QUALITY (merged with statement) ──────── */
+    .wq-merged-section { padding: 5.5rem 1.5rem; }
+    .wq-merged-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 4rem; }
+    @media (max-width: 860px) { .wq-merged-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .wq-visual-col { position: sticky; top: calc(var(--bar-h) + 2rem); align-self: start; }
+    @media (max-width: 860px) { .wq-visual-col { position: static; } }
+    .wq-can-img { width: 100%; max-width: 260px; display: block; margin: 0 auto 1.25rem; }
+    .wq-can-labels { display: flex; justify-content: center; gap: 2.5rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 2rem; }
+    .wq-statement { font-size: 1rem; line-height: 1.65; color: var(--charcoal); text-align: center; max-width: 34ch; margin: 0 auto; }
+    .wq-statement strong { font-weight: 600; }
+    .wq-statement em { font-style: italic; color: var(--gray-600); }
+    .wq-statement-attr { text-align: center; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-400); margin-top: 1rem; }
+
+    .wq-facts-head { margin-bottom: 2.25rem; max-width: 52ch; }
+    .wq-facts-head .wq-intro { font-size: 0.92rem; line-height: 1.6; color: var(--gray-600); margin-top: 0.75rem; }
+
+    .wq-gauge-layout { display: grid; grid-template-columns: 40px 1fr; gap: 2rem; }
+    .wq-gauge-track-wrap { position: relative; width: 3px; background: var(--gray-200); border-radius: 2px; margin: 0 auto; }
+    .wq-gauge-fill { position: absolute; top: 0; left: 0; width: 100%; background: var(--navy); border-radius: 2px; transition: height 0.35s ease; }
+    .wq-gauge-marker {
+      position: absolute; left: 50%; transform: translate(-50%, -50%); width: 15px; height: 15px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--gray-300, var(--gray-200)); color: var(--gray-400);
+      font-size: 0.68rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s ease;
+    }
+    .wq-gauge-marker.active { border-color: var(--navy); background: var(--navy); color: var(--white); }
+    .wq-fact-panel { min-height: 190px; }
+    .wq-fact-list { display: flex; flex-direction: column; gap: 2.4rem; }
+    .wq-fact-item { opacity: 0.35; transition: opacity 0.2s ease; cursor: pointer; }
+    .wq-fact-item.active { opacity: 1; }
+    .wq-fact-label { font-size: 1.05rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.6rem; }
+    .wq-ph-badge { display: inline-flex; align-items: baseline; gap: 0.2rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.03em; color: var(--navy); background: rgba(29,37,53,0.08); border-radius: 999px; padding: 0.15rem 0.55rem; }
+    .wq-ph-badge span { font-size: 0.8rem; }
+    .wq-fact-detail { font-size: 0.88rem; line-height: 1.65; color: var(--gray-600); max-width: 50ch; display: none; }
+    .wq-fact-item.active .wq-fact-detail { display: block; }
+
+    /* ─── PROGRESSIVE FORM REVEAL ────────────────────── */
+    /* !important so it also beats inline display styles (e.g. the ZIP flex row) */
+    .form-step-locked > *:not(.form-section-heading):not(.step-hint) { display: none !important; }
+    .form-step:not(.form-step-locked) > .step-hint { display: none; }
+    .form-step-locked:not(.is-next) > .step-hint { display: none; }
+    .step-hint {
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--gray-400);
+    }
+    .form-step-locked .form-section-heading { opacity: 0.35; }
+    .form-step .form-section-heading { transition: opacity .25s ease; }
+
+    /* ─── ORDER DETAILS SUB-STEPS ────────────────────── */
+    .substep-locked { display: none; }
+    .substep-collapsed .substep-body { display: none; }
+
+    .substep-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem 0.7rem;
+      padding: 0.7rem 0.9rem;
+      margin-bottom: 0.9rem;
+      background: var(--off-white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+    .substep-summary:hover { border-color: var(--gray-400); }
+    .substep-summary .ss-val { color: var(--navy); font-weight: 600; }
+    .substep-summary .ss-sep { color: var(--gray-400); }
+    .substep-summary .ss-edit {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+
+    /* ─── CHECKBOX OPTION ────────────────────────────── */
+    .field label.check-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin-top: 0.85rem;
+      cursor: pointer;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+    .field label.check-opt input[type="checkbox"] {
+      /* .field input strips native appearance and adds full-width padding —
+         undo all of it so this renders as a real tick box. */
+      -webkit-appearance: checkbox;
+      appearance: checkbox;
+      width: 15px;
+      height: 15px;
+      min-width: 0;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: none;
+      margin: 0.12rem 0 0;
+      accent-color: var(--navy);
+      flex: none;
+      cursor: pointer;
+    }
+    .field label.check-opt span {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--gray-600);
+    }
+    .field label.check-opt:hover span { color: var(--charcoal); }
+    .field label.check-opt:has(input:checked) span { color: var(--navy); font-weight: 600; }
+
+    /* ─── MOBILE HERO ORDER ──────────────────────────── */
+    /* Put the CTA straight after the headline and paragraph on a phone, so it
+       isn't buried under the can carousel, the pH panel and the stats row.
+       The carousel is a sibling of .hero-text (not a child) purely so this
+       reorder is possible — desktop source order is unchanged. */
+    @media (max-width: 640px) {
+      .hero-text          { order: 1; }
+      .hero-actions       { order: 2; margin-top: 1.5rem; }
+      .can-portfolio-inline { order: 3; }
+      .hero-right-col     { order: 4; }
+      .hero-stats         { order: 5; }
     }

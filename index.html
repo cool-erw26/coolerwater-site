@@ -252,13 +252,10 @@
     <div class="hero-inner">
 
       <div class="hero-text">
-        <div class="hero-eyebrow">
-          <div class="eyebrow-dot"></div>
-          <span class="eyebrow-text">Miami &nbsp;·&nbsp; New York &nbsp;·&nbsp; Los Angeles &nbsp;·&nbsp; Las Vegas &nbsp;·&nbsp; Orlando &nbsp;·&nbsp; Austin &nbsp;·&nbsp; Chicago</span>
-        </div>
-        <h1>Your Brand. <span class="accent">Our Water.</span><span class="h1-geo">Custom Branded Canned Water for Trade Shows, Conferences &amp; Events &mdash; Shipped Nationwide</span></h1>
+        <h1>Your Brand. <span class="accent">Our Water.</span></h1>
         <p class="hero-tagline">COOLER WATER&trade; premium canned spring water &nbsp;·&nbsp; Pure. Crisp. <em>Canned at the Source.</em></p>
-        <p class="hero-detail">Naturally alkaline spring water from the Appalachian Mountains — fully custom branded, still or sparkling.<br />Put your logo on every can. Trade shows, conferences, hotels, offices, and brand activations — shipped nationwide to all 50 states.</p>
+        <p class="hero-detail">Naturally alkaline spring water from the Appalachian Mountains — fully custom branded, still or sparkling.<br />Made for trade shows, conferences, brand activations, hotels, offices, and hospitality. Shipped nationwide to all 50 states. Your logo on every can.</p>
+      </div>
 
         <div class="can-portfolio-section can-portfolio-inline">
           <div class="can-portfolio-track-wrap">
@@ -296,7 +293,6 @@
             </div>
           </div>
         </div>
-      </div>
 
       <div class="hero-right-col">
         <div class="hero-water-fact">
@@ -334,106 +330,8 @@
     </div>
   </section>
 
-  <!-- WATER QUALITY -->
-  <section class="water-quality-section">
-    <div class="container">
-      <div class="wq-layout">
-        <div class="wq-left">
-          <div class="tag">The Water</div>
-          <h2 class="section-h">What Makes It<br /><span class="accent">Different.</span></h2>
-          <p class="wq-intro">Not all spring water is created equal. COOLER WATER™ comes from naturally alkaline springs — a source so rare, most people never taste it.</p>
-          <div class="wq-callout">
-            <div class="wq-callout-text">Pure &amp; Pristine<br />Sourced from Protected<br />Underground Springs</div>
-          </div>
-        </div>
-        <div class="wq-rows">
-          <div class="wq-row">
-            <div class="wq-label">Exceptionally Rare</div>
-            <div class="wq-detail">Only 1% of springs in the United States are naturally alkaline. Most drinking water on the planet is neutral to acidic — finding a true naturally alkaline source is genuinely rare. <span class="wq-ph-badge">pH <span>7.8</span></span></div>
-          </div>
-          <div class="wq-row">
-            <div class="wq-label">Discovered, Not Manufactured</div>
-            <div class="wq-detail">Naturally alkaline water isn't processed or chemically adjusted. Its alkalinity comes from ancient rock and mineral-rich earth, filtered over time and not engineered in a facility.</div>
-          </div>
-          <div class="wq-row">
-            <div class="wq-label">Mineral-Rich by Nature</div>
-            <div class="wq-detail">As water moves through layers of rock and sandstone in the Appalachian Mountains, it naturally absorbs <strong>magnesium, calcium, and potassium</strong> — minerals that occur from the earth itself. Not added. Not supplemented.</div>
-          </div>
-          <div class="wq-row">
-            <div class="wq-label">Canned at the Source</div>
-            <div class="wq-detail">From spring to sealed can without compromise. Canning at the source means no long-haul transport, no exposure, and no loss of quality before it reaches your hands.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- WHO IT'S FOR -->
-  <!-- CONVERSION STAT -->
-  <section class="conv-stat-section">
-    <div class="conv-stat-inner conv-stat-inner--single">
-      <div class="conv-stat-col">
-        <div class="conv-stat-num" id="convStatNum">0%</div>
-        <p class="conv-stat-lead">of your customers already drink water</p>
-        <div class="conv-stat-cans" id="convStatCans" aria-hidden="true"></div>
-        <p class="conv-stat-copy">No other product can promise that.</p>
-      </div>
-    </div>
-    <script>
-      (function() {
-        var section = document.querySelector('.conv-stat-section');
-        var numEl = document.getElementById('convStatNum');
-        var cansWrap = document.getElementById('convStatCans');
-        if (!section || !numEl || !cansWrap) return;
-
-        // 10 cans, all full = 100%
-        var fills = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-        var html = '';
-        fills.forEach(function(f, i) {
-          html +=
-            '<svg viewBox="0 0 36 88">' +
-              '<defs><clipPath id="csCanClip' + i + '"><rect x="7" y="12" width="22" height="70" rx="5"/></clipPath></defs>' +
-              // fill (clipped to body, scales up from the bottom)
-              '<g clip-path="url(#csCanClip' + i + ')">' +
-                '<rect class="cs-fill" x="7" y="12" width="22" height="70" fill="#1D2535" style="--f:' + f + ';transition-delay:' + (i * 90) + 'ms"/>' +
-              '</g>' +
-              // outlines: lid + body
-              '<rect x="10" y="5" width="16" height="4" rx="2" fill="none" stroke="#9AA4B2" stroke-width="1.5"/>' +
-              '<rect x="7" y="12" width="22" height="70" rx="5" fill="none" stroke="' + (f > 0 ? '#1D2535' : '#9AA4B2') + '" stroke-width="1.5"/>' +
-            '</svg>';
-        });
-        cansWrap.innerHTML = html;
-
-        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        function run() {
-          section.classList.add('cs-inview');
-          var start = null, dur = 1200;
-          function tick(ts) {
-            if (!start) start = ts;
-            var p = Math.min(1, (ts - start) / dur);
-            var e = 1 - Math.pow(1 - p, 3); // ease-out cubic
-            numEl.textContent = Math.round(100 * e) + '%';
-            if (p < 1) requestAnimationFrame(tick);
-          }
-          requestAnimationFrame(tick);
-        }
-        if (reduced) {
-          numEl.textContent = '100%';
-          section.classList.add('cs-inview');
-          return;
-        }
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function(entries) {
-            if (entries[0].isIntersecting) { run(); io.disconnect(); }
-          }, { threshold: 0.35 });
-          io.observe(section);
-        } else {
-          run();
-        }
-      })();
-    </script>
-  </section>
-
   <section id="use-cases">
     <div class="container">
       <div class="use-cases-head">
@@ -478,12 +376,79 @@
           <div class="uc-body">
             <h3>Brand Activations</h3>
             <p>Custom cans don't stay at the event — they leave with people. That's the kind of merch that works without feeling like merch.</p>
-            <p style="margin-top:0.65rem;font-size:0.8rem;color:rgba(29,37,53,0.55);">Looking for more than water? Explore custom branded beverages and drink activations – from the can to the drink, tailored to your brand.</p>
+            <p style="margin-top:0.65rem;font-size:0.8rem;color:rgba(29,37,53,0.55);">Looking for more than water? Explore custom branded beverages and drink activations at <a href="https://www.coolerdrinkevents.com/?utm_source=coolerwater&amp;utm_medium=referral&amp;utm_campaign=cross-brand&amp;utm_content=activations-card" target="_blank" rel="noopener" class="inline-link">Cooler Drink Events</a> – from the can to the drink, tailored to your brand.</p>
             <a href="https://instagram.com/coolerdrinkevents" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(29,37,53,0.45);text-decoration:none;">Custom Drinks &amp; Events → @coolerdrinkevents</a>
           </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- WATER QUALITY + STATEMENT -->
+  <section class="wq-merged-section" id="the-water">
+    <div class="wq-merged-inner">
+      <div class="wq-visual-col">
+        <img class="wq-can-img" src="images/cooler-cans.png" alt="Cooler Water still and sparkling — custom branded canned spring water" />
+        <div class="wq-can-labels"><span>Still</span><span>Sparkling</span></div>
+        <p class="wq-statement"><strong>Exceptionally pure.</strong> Sourced from pristine Appalachian Mountain springs and canned at the source. Fine-bubble sparkling or smooth still. COOLER WATER&trade; is crafted for those who <em>taste the difference.</em></p>
+        <div class="wq-statement-attr">&mdash; COOLER WATER&trade;</div>
+      </div>
+      <div class="wq-facts-col">
+        <div class="wq-facts-head">
+          <h2 class="section-h">What Makes It<br /><span class="accent">Different.</span></h2>
+          <p class="wq-intro">Not all spring water is created equal. COOLER WATER&trade; comes from naturally alkaline springs.</p>
+        </div>
+        <div class="wq-gauge-layout">
+          <div class="wq-gauge-track-wrap" id="wqTrackWrap">
+            <div class="wq-gauge-fill" id="wqFill" style="height:0%;"></div>
+            <div class="wq-gauge-marker active" data-idx="0" style="top:0%;"></div>
+            <div class="wq-gauge-marker" data-idx="1" style="top:33.33%;"></div>
+            <div class="wq-gauge-marker" data-idx="2" style="top:66.66%;"></div>
+            <div class="wq-gauge-marker" data-idx="3" style="top:100%;"></div>
+          </div>
+          <div class="wq-fact-panel">
+            <div class="wq-fact-list" id="wqFactList">
+              <div class="wq-fact-item active" data-idx="0">
+                <div class="wq-fact-label">Exceptionally Rare <span class="wq-ph-badge">pH <span>7.8</span></span></div>
+                <div class="wq-fact-detail">Only 1% of springs in the United States are naturally alkaline. Most drinking water on the planet is neutral to acidic — finding a true naturally alkaline source is genuinely rare.</div>
+              </div>
+              <div class="wq-fact-item" data-idx="1">
+                <div class="wq-fact-label">Discovered, Not Manufactured</div>
+                <div class="wq-fact-detail">Naturally alkaline water isn't processed or chemically adjusted. Its alkalinity comes from ancient rock and mineral-rich earth, filtered over time and not engineered in a facility.</div>
+              </div>
+              <div class="wq-fact-item" data-idx="2">
+                <div class="wq-fact-label">Mineral-Rich by Nature</div>
+                <div class="wq-fact-detail">Moving through Appalachian rock and sandstone, it naturally absorbs <strong>magnesium, calcium, and potassium</strong>. Not added. Not supplemented.</div>
+              </div>
+              <div class="wq-fact-item" data-idx="3">
+                <div class="wq-fact-label">Canned at the Source</div>
+                <div class="wq-fact-detail">From spring to sealed can without compromise. Canning at the source means no long-haul transport, no exposure, and no loss of quality before it reaches your hands.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        var markers = document.querySelectorAll('#wqTrackWrap .wq-gauge-marker');
+        var facts = document.querySelectorAll('#wqFactList .wq-fact-item');
+        var fill = document.getElementById('wqFill');
+        var positions = [0, 33.33, 66.66, 100];
+        function setActive(idx) {
+          markers.forEach(function(m) { m.classList.toggle('active', Number(m.dataset.idx) === idx); });
+          facts.forEach(function(f) { f.classList.toggle('active', Number(f.dataset.idx) === idx); });
+          fill.style.height = positions[idx] + '%';
+        }
+        markers.forEach(function(m) {
+          m.addEventListener('click', function() { setActive(Number(m.dataset.idx)); });
+        });
+        facts.forEach(function(f) {
+          f.addEventListener('click', function() { setActive(Number(f.dataset.idx)); });
+        });
+        setActive(0);
+      })();
+    </script>
   </section>
 
   <!-- PHOTO MOSAIC -->
@@ -502,29 +467,6 @@
   </div>
 
 
-  <!-- STATEMENT -->
-  <div class="statement">
-    <div class="container">
-      <div class="statement-layout">
-        <div class="statement-inner">
-          <p>
-            <strong>Exceptionally pure.</strong> Sourced from pristine Appalachian springs and canned at the source.
-            COOLER WATER™ is crafted for those who <em>taste the difference.</em>
-            Fine-bubble sparkling or smooth still — every sip is a standard.
-            Available in fully custom-branded 12oz aluminum cans, the one branded thing people actually reach for.
-          </p>
-          <div class="statement-attr">— COOLER WATER™</div>
-        </div>
-        <div class="statement-cans">
-          <img src="images/cooler-cans.png" alt="Cooler Water still and sparkling — custom branded canned spring water" class="statement-can-img" />
-          <div class="can-img-labels">
-            <span>Still</span>
-            <span>Sparkling</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- HOW IT WORKS -->
   <section id="how-it-works">
@@ -609,6 +551,71 @@
     </div>
   </section>
 
+  <!-- CONVERSION STAT -->
+  <section class="conv-stat-section">
+    <div class="conv-stat-inner conv-stat-inner--single">
+      <div class="conv-stat-col">
+        <div class="conv-stat-num" id="convStatNum">0%</div>
+        <p class="conv-stat-lead">of your customers already drink water</p>
+        <div class="conv-stat-cans" id="convStatCans" aria-hidden="true"></div>
+        <p class="conv-stat-copy">No other product can promise that.</p>
+      </div>
+    </div>
+    <script>
+      (function() {
+        var section = document.querySelector('.conv-stat-section');
+        var numEl = document.getElementById('convStatNum');
+        var cansWrap = document.getElementById('convStatCans');
+        if (!section || !numEl || !cansWrap) return;
+
+        // 10 cans, all full = 100%
+        var fills = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        var html = '';
+        fills.forEach(function(f, i) {
+          html +=
+            '<svg viewBox="0 0 36 88">' +
+              '<defs><clipPath id="csCanClip' + i + '"><rect x="7" y="12" width="22" height="70" rx="5"/></clipPath></defs>' +
+              // fill (clipped to body, scales up from the bottom)
+              '<g clip-path="url(#csCanClip' + i + ')">' +
+                '<rect class="cs-fill" x="7" y="12" width="22" height="70" fill="#1D2535" style="--f:' + f + ';transition-delay:' + (i * 90) + 'ms"/>' +
+              '</g>' +
+              // outlines: lid + body
+              '<rect x="10" y="5" width="16" height="4" rx="2" fill="none" stroke="#9AA4B2" stroke-width="1.5"/>' +
+              '<rect x="7" y="12" width="22" height="70" rx="5" fill="none" stroke="' + (f > 0 ? '#1D2535' : '#9AA4B2') + '" stroke-width="1.5"/>' +
+            '</svg>';
+        });
+        cansWrap.innerHTML = html;
+
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function run() {
+          section.classList.add('cs-inview');
+          var start = null, dur = 1200;
+          function tick(ts) {
+            if (!start) start = ts;
+            var p = Math.min(1, (ts - start) / dur);
+            var e = 1 - Math.pow(1 - p, 3); // ease-out cubic
+            numEl.textContent = Math.round(100 * e) + '%';
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }
+        if (reduced) {
+          numEl.textContent = '100%';
+          section.classList.add('cs-inview');
+          return;
+        }
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) { run(); io.disconnect(); }
+          }, { threshold: 0.35 });
+          io.observe(section);
+        } else {
+          run();
+        }
+      })();
+    </script>
+  </section>
+
   <!-- STAT CALLOUT -->
   <section class="statcallout-section statcallout-bold">
     <div class="statcallout-grid">
@@ -653,9 +660,8 @@
           <p class="section-sub">A few quick details so we can turn it around fast. Fill it out and we'll get back to you with a quote & more details.</p>
           <ul class="form-list">
             <li>Still &amp; sparkling varieties available</li>
-            <li>Full wrap label — from<strong> 432 cans</strong></li>
-            <li>Digital print to can — from<strong> 432 cans</strong></li>
-            <li>Full custom label design included</li>
+            <li>Minimum order —<strong> 432 cans</strong> <span style="opacity:0.6;">(18 cases of 24)</span></li>
+            <li>Can design included — just send your logo</li>
             <li>Natural spring water, canned at the source</li>
             <li>Nationwide delivery</li>
           </ul>
@@ -674,7 +680,7 @@
               </div>
             </div>
             <div class="lead-time-footer">Rush pricing is tiered and based on current production capacity — inquire when you submit and we'll confirm availability.</div>
-            <div class="lead-time-footer" style="margin-top:0.5rem;border-top:1px solid var(--gray-100);padding-top:0.65rem;">Freight is estimated based on quantity, production date, and delivery destination — included in your custom quote.</div>
+            <div class="lead-time-footer" style="margin-top:0.5rem;border-top:1px solid var(--gray-100);padding-top:0.65rem;">Freight is included in your quote. Cost depends on quantity, date, and destination.</div>
           </div>
         </div>
         <div>
@@ -722,6 +728,9 @@
               <div class="form-section-title">Order Details</div>
             </div>
 
+            <div class="substep" id="orderWhat">
+              <div class="substep-summary" hidden></div>
+              <div class="substep-body">
             <div class="field" style="margin-bottom: 0.5rem;">
               <span class="qty-label">Estimated Quantity *</span>
               <div class="qty-grid">
@@ -760,6 +769,22 @@
               </div>
             </div>
 
+            <label class="check-opt" id="recurringWrap">
+              <input type="checkbox" name="recurringOrder" id="recurringOrder" value="Yes — recurring order" />
+              <span>This would be a recurring order</span>
+            </label>
+            <div class="field" id="recurringFreqField" style="margin-top:0.7rem;margin-bottom:0;display:none;">
+              <label for="recurringFreq">Roughly how often?</label>
+              <select id="recurringFreq" name="recurringFreq">
+                <option value="" disabled selected>Select</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+                <option value="A few times a year">A few times a year</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+
+
             <div class="form-divider"></div>
 
             <div class="field-row">
@@ -771,11 +796,10 @@
                   <option value="sparkling">Sparkling Water</option>
                   <option value="both">Both — Still &amp; Sparkling</option>
                 </select>
-                <p style="margin-top:0.4rem;font-size:0.75rem;color:var(--gray-400);">Other beverages available upon request — add details in the notes field.</p>
               </div>
               <div class="field">
-                <label for="useCase">Use Case</label>
-                <select id="useCase" name="useCase">
+                <label for="useCase">Use Case <span style="color:#c0392b;">*</span></label>
+                <select id="useCase" name="useCase" required>
                   <option value="" disabled selected>Select</option>
                   <option value="hotel">Hotel / Hospitality</option>
                   <option value="event">Event / Conference</option>
@@ -787,7 +811,10 @@
                 </select>
               </div>
             </div>
+              </div>
+            </div>
 
+            <div class="substep substep-locked" id="orderWhen">
             <div class="field" style="margin-bottom: 0.5rem;">
               <span class="qty-label">Production Timeline *</span>
               <div class="qty-grid" style="grid-template-columns: repeat(2, 1fr);">
@@ -802,15 +829,19 @@
               </div>
             </div>
 
-            <div class="field-row" id="rushDateFields" style="display:none;">
+            <div class="field-row" id="timelineDateFields">
               <div class="field">
-                <label for="rushEventDate">Event Date</label>
-                <input type="date" id="rushEventDate" name="rushEventDate" />
-              </div>
-              <div class="field">
-                <label for="rushInHandDate">Required In-Hand Date</label>
+                <label for="rushInHandDate">When do you need them in hand?</label>
                 <input type="date" id="rushInHandDate" name="rushInHandDate" />
               </div>
+              <div class="field">
+                <label for="rushEventDate">Event date <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-400);">(if different)</span></label>
+                <input type="date" id="rushEventDate" name="rushEventDate" />
+              </div>
+            </div>
+
+            <div class="timeline-estimate" id="timelineEstimate"></div>
+            <input type="hidden" name="estimatedTimeline" id="estimatedTimeline" />
             </div>
 
             <div class="form-divider"></div>
@@ -834,65 +865,45 @@
               </div>
             </div>
 
-            <div class="field" style="margin-top:1.1rem;margin-bottom:0;">
-              <span class="qty-label">What kind of place is it going to? <span style="color:#c0392b;">*</span></span>
-              <div class="deliv-grid">
-                <div class="deliv-opt">
-                  <input type="radio" name="deliverySite" id="ds1" value="Warehouse or loading dock" required />
-                  <label for="ds1">Warehouse or loading dock</label>
-                </div>
-                <div class="deliv-opt">
-                  <input type="radio" name="deliverySite" id="ds2" value="Office building" />
-                  <label for="ds2">Office building</label>
-                </div>
-                <div class="deliv-opt">
-                  <input type="radio" name="deliverySite" id="ds3" value="Hotel, venue or event space" />
-                  <label for="ds3">Hotel, venue or event space</label>
-                </div>
-                <div class="deliv-opt">
-                  <input type="radio" name="deliverySite" id="ds4" value="Home or residential" />
-                  <label for="ds4">Home or residential</label>
-                </div>
-                <div class="deliv-opt deliv-opt-wide">
-                  <input type="radio" name="deliverySite" id="ds5" value="Not sure yet" />
-                  <label for="ds5">Not sure yet &mdash; we can figure it out together</label>
-                </div>
-              </div>
-              <p class="deliv-help">Your order ships on a pallet by freight truck. Knowing the type of place tells us what the driver needs to get it off the truck &mdash; a warehouse can unload it directly, most other places need the truck to bring its own lift. We handle the arrangements either way; it just changes the freight cost.</p>
+            <div class="field" id="delivSiteField" style="margin-top:1.1rem;margin-bottom:0;display:none;">
+              <label for="deliverySite">What kind of place is it going to? <span style="color:#c0392b;">*</span></label>
+              <select id="deliverySite" name="deliverySite">
+                <option value="" disabled selected>Select</option>
+                <option value="Warehouse or loading dock">Warehouse or loading dock</option>
+                <option value="Office building">Office building</option>
+                <option value="Hotel, venue or event space">Hotel, venue or event space</option>
+                <option value="Home or residential">Home or residential</option>
+                <option value="Not sure yet">Not sure yet &mdash; we can figure it out</option>
+              </select>
+              <p class="deliv-help">Ships on a pallet by freight truck. A warehouse can unload it. Anywhere else needs a lift on the truck. We arrange that, and freight is included in your quote.</p>
             </div>
-            <p style="margin-top:0.6rem;font-size:0.72rem;color:var(--gray-400);line-height:1.5;">Freight is estimated based on quantity, production date, and delivery destination — included in your custom quote.</p>
 
             <div class="form-divider"></div>
 
             <div class="form-section-heading">
               <div class="form-section-step">4</div>
-              <div class="form-section-title">Notes &amp; Files</div>
+              <div class="form-section-title">Artwork &amp; Files</div>
             </div>
 
-            <div class="field">
-              <label for="notes">Anything Else We Should Know</label>
-              <textarea id="notes" name="notes" placeholder="Tell us about your brand, the event, any design direction, timeline needs, or anything else that helps us put together the right quote."></textarea>
-            </div>
-
-            <div class="field">
-              <label for="hearAbout">How did you hear about us?</label>
-              <select id="hearAbout" name="hearAbout">
+            <div class="field" style="margin-bottom: 0.75rem;">
+              <label for="artworkStatus">Where are you with design? <span style="color:#c0392b;">*</span></label>
+              <select id="artworkStatus" name="artworkStatus" required>
                 <option value="" disabled selected>Select</option>
-                <option value="Instagram">Instagram</option>
-                <option value="TikTok">TikTok</option>
-                <option value="Google Search">Google Search</option>
-                <option value="Word of Mouth">Word of Mouth</option>
-                <option value="Event / Activation">Saw it at an Event or Activation</option>
-                <option value="LinkedIn">LinkedIn</option>
-                <option value="Pinterest">Pinterest</option>
-                <option value="Press / Article">Press / Article</option>
-                <option value="Referral">Referred by Someone</option>
-                <option value="Other">Other</option>
+                <option value="Print-ready file">I have a print-ready file</option>
+                <option value="Logo and brand assets">I have a logo &amp; brand assets &mdash; lay it out for me</option>
+                <option value="Need design from scratch">Starting from scratch &mdash; I need design help</option>
+                <option value="Not sure yet">Not sure yet</option>
               </select>
+              <label class="check-opt">
+                <input type="checkbox" name="multipleDesigns" value="Yes — more than one design" />
+                <span>This order needs more than one can design</span>
+              </label>
+              <p class="deliv-help" id="multiDesignNote" hidden>Minimum order quantity applies per design.</p>
             </div>
 
             <div class="upload-zone-wrap">
-              <label>Upload Logo or Design Files <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-400);">(optional)</span></label>
+              <label>Upload Logos, Artwork &amp; Inspiration <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-400);">(optional)</span></label>
+              <p class="deliv-help" style="margin-top:0.35rem;margin-bottom:0.6rem;">Brand guidelines, reference designs, mockups, or cans you like &mdash; it all helps.</p>
               <div id="fileHiddenFields"></div>
               <input type="file" id="fileUploadDirect" accept=".png,.jpg,.jpeg,.pdf,.svg,.ai,.eps,.psd,.gif,.webp" multiple style="display:none;" />
               <label for="fileUploadDirect" id="uploadBox" style="display:block;background:var(--off-white);border:2px dashed var(--gray-200);border-radius:0.5rem;padding:1.25rem;text-align:center;cursor:pointer;transition:all 0.2s;">
@@ -904,8 +915,43 @@
               </label>
             </div>
 
+            <div class="form-section-heading">
+              <div class="form-section-step">5</div>
+              <div class="form-section-title">Anything Else</div>
+            </div>
+
+            <div class="field">
+              <label for="notes">Anything Else We Should Know?</label>
+              <textarea id="notes" name="notes" rows="6" placeholder="Tell us more about your design direction, your brand, timeline needs, or anything else that helps us put together the right quote."></textarea>
+            </div>
+
+            <div class="field">
+              <label for="hearAbout">How did you hear about us? <span style="color:#c0392b;">*</span></label>
+              <select id="hearAbout" name="hearAbout" required>
+                <option value="" disabled selected>Select</option>
+                <option value="Instagram">Instagram</option>
+                <option value="TikTok">TikTok</option>
+                <option value="Google">Google</option>
+                <option value="Word of Mouth">Word of Mouth</option>
+                <option value="Event / Activation">Saw it at an Event or Activation</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Pinterest">Pinterest</option>
+                <option value="Press / Article">Press / Article</option>
+                <option value="Referral">Referred by Someone</option>
+                <option value="ChatGPT">ChatGPT</option>
+                <option value="Claude">Claude</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field" id="hearAboutOtherField" style="display:none;">
+              <label for="hearAboutOther">Where did you find us? <span style="color:#c0392b;">*</span></label>
+              <input type="text" id="hearAboutOther" name="hearAboutOther" placeholder="e.g. a podcast, a trade show, another brand&rsquo;s cans" />
+            </div>
+
             <button type="submit" class="submit-btn">Request My Quote &rarr;</button>
             <p class="submit-footer">We'll be in touch soon.</p>
+            <div class="form-error-banner" id="formError" role="alert" aria-live="polite"></div>
             <div class="success-banner" id="successBanner">
               We've received your custom water inquiry and will send your personalized quote within 24 hours.<br />
               Your brand's about to get a whole lot cooler.
@@ -1032,10 +1078,29 @@
     const stateInput = document.getElementById('delivState');
     const cityField  = document.getElementById('delivCityField');
     const stateField = document.getElementById('delivStateField');
+    const siteField  = document.getElementById('delivSiteField');
+
+    // The delivery-site question only matters once we know where it's going,
+    // so it stays hidden until a valid 5-digit ZIP is in. `required` is applied
+    // with it — a hidden required radio would block submit with no visible cause.
+    function toggleSiteField(show) {
+      if (!siteField) return;
+      const site = document.getElementById('deliverySite');
+      if (show) {
+        siteField.style.display = '';
+        if (site) site.required = true;
+      } else {
+        siteField.style.display = 'none';
+        if (site) { site.required = false; site.value = ''; }
+      }
+    }
+
     if (zipInput) {
       zipInput.addEventListener('input', function () {
         const zip = this.value.trim();
-        if (zip.length === 5 && /^\d{5}$/.test(zip)) {
+        const validZip = zip.length === 5 && /^\d{5}$/.test(zip);
+        toggleSiteField(validZip);
+        if (validZip) {
           fetch('https://api.zippopotam.us/us/' + zip)
             .then(r => r.ok ? r.json() : null)
             .then(data => {
@@ -1228,10 +1293,144 @@
     // Rush selection doesn't submit stale dates.
     (function () {
       var timelineRadios = document.querySelectorAll('input[name="timeline"]');
-      var rushFields = document.getElementById('rushDateFields');
+      var rushFields = document.getElementById('timelineDateFields');
       var rushEventDate = document.getElementById('rushEventDate');
       var rushInHandDate = document.getElementById('rushInHandDate');
 
+      // Earliest selectable date is 10 calendar days out. That puts the
+      // "we'll see what's possible" band at 10-13 days — under the 2-week
+      // fast route but close enough to be worth asking about. Calendar days,
+      // not business: 10 business days would be 14 and close the band. Built
+      // from local date parts, not toISOString(), which returns yesterday for
+      // anyone west of UTC.
+      var MIN_LEAD_DAYS = 10;
+      (function () {
+        var floor = startOfDay(new Date());
+        floor.setDate(floor.getDate() + MIN_LEAD_DAYS);
+        var iso = floor.getFullYear() + '-' +
+                  String(floor.getMonth() + 1).padStart(2, '0') + '-' +
+                  String(floor.getDate()).padStart(2, '0');
+        [rushInHandDate, rushEventDate].forEach(function (el) { if (el) el.min = iso; });
+      })();
+
+      // Lead times run from ARTWORK APPROVAL and end at the co-packer, so the
+      // freight leg is added separately. Anchoring on the approval date keeps
+      // this consistent with the published lead times and puts the part we
+      // don't control (how fast artwork comes back) on the customer's side.
+      // Weeks from artwork approval to the customer's door.
+      // Standard: 4-6 weeks production + ~1 week freight.
+      // Rush fast end is 2 weeks delivered - wrap label with everything
+      // expedited, freight included. Slow end is direct print plus freight.
+      var LEAD = {
+        Standard: { doorMin: 5, doorMax: 7, note: '5&ndash;7 weeks from artwork approval to your door' },
+        Rush:     { doorMin: 2, doorMax: 5, note: '2&ndash;5 weeks from artwork approval to your door' }
+      };
+      var APPROVAL_WEEKS = 1;         // inquiry -> approved artwork, typical
+
+      var estimateBox = document.getElementById('timelineEstimate');
+      var estimateHidden = document.getElementById('estimatedTimeline');
+
+      function addWeeks(d, w) { var x = new Date(d.getTime()); x.setDate(x.getDate() + Math.round(w * 7)); return x; }
+      function fmt(d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
+      function startOfDay(d) { var x = new Date(d.getTime()); x.setHours(0,0,0,0); return x; }
+      function addBusinessDays(d, n) {
+        var x = new Date(d.getTime());
+        while (n > 0) { x.setDate(x.getDate() + 1); if (x.getDay() !== 0 && x.getDay() !== 6) n--; }
+        return x;
+      }
+
+      function renderEstimate() {
+        var mode = document.getElementById('timelineRush').checked ? 'Rush' : 'Standard';
+        // Rush carries fees; Standard doesn't, and these messages are shared.
+        var feeNote = mode === 'Rush'
+          ? ' Rush production fees apply, and expedited freight may be available to meet the required delivery date for an additional cost.'
+          : '';
+        var lead = LEAD[mode];
+        var today = startOfDay(new Date());
+        var inHandRaw = rushInHandDate.value;
+        var html = '', plain = '';
+
+        var inHandDate = inHandRaw ? startOfDay(new Date(inHandRaw + 'T00:00:00')) : null;
+        var earliest = new Date(today.getTime());
+        earliest.setDate(earliest.getDate() + MIN_LEAD_DAYS);
+        if (!inHandRaw || inHandDate < earliest) {
+          if (mode === 'Standard') {
+            // Standard asks for no date, so quote a window off a realistic
+            // artwork turnaround rather than implying same-day approval.
+            var artworkBy = addBusinessDays(today, 3);
+            var estMin = addWeeks(artworkBy, lead.doorMin);
+            var estMax = addWeeks(artworkBy, lead.doorMax);
+            plain = 'Standard: estimated delivery ' + fmt(estMin) + '-' + fmt(estMax) + ' (assumes artwork confirmed within 3 business days)';
+            html = '<span class="te-title">Estimated delivery ' + fmt(estMin) + ' &ndash; ' + fmt(estMax) + '</span>' +
+                   '<span class="te-detail">Assumes artwork is confirmed within 3 business days of your inquiry. This is an estimate, not a guaranteed date.</span>';
+          } else {
+            // Lead with the fastest we can realistically do, and leave the door
+            // open on earlier dates rather than quoting a ceiling.
+            var readyMin = addWeeks(today, lead.doorMin);
+            var readyMax = addWeeks(today, lead.doorMax);
+            plain = 'Rush: as early as ' + fmt(readyMin) + ', estimated window ' + fmt(readyMin) + '-' + fmt(readyMax) + ' (earlier considered on request)';
+            html = '<span class="te-title">Cans can arrive as early as ' + fmt(readyMin) + '</span>' +
+                   '<span class="te-detail">Estimated delivery window ' + fmt(readyMin) + ' &ndash; ' + fmt(readyMax) +
+                   ', depending on print method. Add your date above and we&rsquo;ll work back to an artwork deadline. Need them sooner? Tell us anyway &mdash; depending on quantity and capacity that week, we can often move faster.</span>';
+          }
+          estimateBox.className = 'timeline-estimate te-neutral';
+        } else {
+          var inHand = inHandDate;
+          // Two deadlines: the safe one assumes the slow end of the production
+          // range, the best-case one assumes the fastest print method. Between
+          // them the order is still winnable, so don't tell them it isn't.
+          var deadline = addWeeks(inHand, -(lead.doorMax));
+          var deadlineBest = addWeeks(inHand, -(lead.doorMin));
+          var daysToDeadline = Math.round((deadline - today) / 86400000);
+          var daysToBest = Math.round((deadlineBest - today) / 86400000);
+
+          if (daysToBest < 0) {
+            var other = mode === 'Standard' ? 'Rush' : null;
+            var otherOk = other && (Math.round((addWeeks(inHand, -(LEAD[other].doorMin)) - today) / 86400000) >= 0);
+            if (otherOk) {
+              // Standard is out but Rush works — frame it as a choice, not a failure.
+              plain = mode + ': Rush needed for ' + fmt(inHand);
+              html = '<span class="te-title">' + fmt(inHand) + ' would need Rush</span>' +
+                     '<span class="te-detail">Standard runs ' + LEAD.Standard.doorMin + '&ndash;' + LEAD.Standard.doorMax +
+                     ' weeks from artwork approval, which doesn&rsquo;t leave enough room. Switch to Rush above and we&rsquo;ll confirm capacity.</span>';
+            } else {
+              // Past even the fast end. We can still flex on bigger orders, so
+              // invite the conversation rather than closing the door.
+              plain = mode + ': ' + fmt(inHand) + ' is sooner than the usual window — possible depending on capacity';
+              html = '<span class="te-title">We&rsquo;ll see what&rsquo;s possible</span>' +
+                     '<span class="te-detail">Delivery by ' + fmt(inHand) + ' is sooner than our usual ' +
+                     LEAD.Rush.doorMin + '&ndash;' + LEAD.Rush.doorMax +
+                     ' week rush delivery window, but dates like this are often doable depending on quantity and what capacity looks like that week. Rush production fees apply, and expedited freight may be available to meet the required delivery date for an additional cost. Send the request and we&rsquo;ll confirm.</span>';
+            }
+            estimateBox.className = 'timeline-estimate te-tight';
+          } else if (daysToDeadline < 0) {
+            plain = mode + ': ' + fmt(inHand) + ' looks good, exact date confirmed with quote';
+            html = '<span class="te-title">' + fmt(inHand) + ' looks good</span>' +
+                   '<span class="te-detail">That&rsquo;s inside our ' + lead.doorMin + '&ndash;' + lead.doorMax +
+                   ' week ' + mode.toLowerCase() + ' window. We&rsquo;ll confirm the exact date with your quote.' + feeNote + '</span>';
+            estimateBox.className = 'timeline-estimate te-tight';
+          } else if (daysToDeadline <= APPROVAL_WEEKS * 7) {
+            plain = mode + ': tight — approve artwork by ' + fmt(deadline);
+            var whenPhrase = daysToDeadline === 0 ? 'That&rsquo;s today'
+                           : daysToDeadline === 1 ? 'That&rsquo;s tomorrow'
+                           : 'That&rsquo;s ' + daysToDeadline + ' days away';
+            html = '<span class="te-title">Tight, but possible &mdash; artwork approved by ' + fmt(deadline) + '</span>' +
+                   '<span class="te-detail">' + whenPhrase + ', so have your logo files ready. ' + lead.note + '.' + feeNote + '</span>';
+            estimateBox.className = 'timeline-estimate te-tight';
+          } else {
+            plain = mode + ': approve artwork by ' + fmt(deadline) + ' for ' + fmt(inHand);
+            html = '<span class="te-title">Approve artwork by ' + fmt(deadline) + ' to have cans by ' + fmt(inHand) + '</span>' +
+                   '<span class="te-detail">' + lead.note + '. You have ' + daysToDeadline + ' days to get artwork approved.' + feeNote + '</span>';
+            estimateBox.className = 'timeline-estimate te-ok';
+          }
+        }
+
+        estimateBox.innerHTML = html;
+        estimateHidden.value = plain;
+      }
+
+      // Standard doesn't ask for a date — it just shows the delivery window.
+      // Rush is date-driven, so the fields appear there.
       function updateTimelineFields() {
         var isRush = document.getElementById('timelineRush').checked;
         rushFields.style.display = isRush ? 'grid' : 'none';
@@ -1239,10 +1438,214 @@
           rushEventDate.value = '';
           rushInHandDate.value = '';
         }
+        renderEstimate();
       }
 
       Array.prototype.forEach.call(timelineRadios, function (r) {
         r.addEventListener('change', updateTimelineFields);
+      });
+      rushInHandDate.addEventListener('change', renderEstimate);
+      rushInHandDate.addEventListener('input', renderEstimate);
+      updateTimelineFields();
+    })();
+
+    // ── Order Details sub-steps ───────────────────────────────────────────
+    // Quantity + variety + use case first; once those are set they collapse to
+    // a summary line and the production timeline takes their place, so the
+    // section never shows everything at once.
+    (function () {
+      var what = document.getElementById('orderWhat');
+      var when = document.getElementById('orderWhen');
+      if (!what || !when) return;
+      var summary = what.querySelector('.substep-summary');
+
+      function radio(name) { var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+      function sel(id) { var e = document.getElementById(id); return e && e.selectedIndex > 0 ? e.options[e.selectedIndex].text : ''; }
+
+      function ready() {
+        return radio('quantity') && document.getElementById('variety').value && document.getElementById('useCase').value;
+      }
+
+      function collapse() {
+        var parts = [radio('quantity') + ' cans', sel('variety'), sel('useCase')].filter(Boolean);
+        summary.innerHTML = parts.map(function (t) { return '<span class="ss-val">' + t + '</span>'; })
+                                 .join('<span class="ss-sep">&middot;</span>') +
+                            '<span class="ss-edit">Edit</span>';
+        summary.hidden = false;
+        what.classList.add('substep-collapsed');
+      }
+
+      function update() {
+        if (!ready()) return;                       // one-way, like the outer reveal
+        when.classList.remove('substep-locked');
+        if (!what.classList.contains('substep-collapsed')) collapse();
+      }
+
+      summary.addEventListener('click', function () {
+        what.classList.remove('substep-collapsed');
+        summary.hidden = true;
+      });
+
+      // re-collapse once they change something and move on
+      what.addEventListener('change', function () {
+        if (what.classList.contains('substep-collapsed')) collapse();
+      });
+
+      document.getElementById('quoteForm').addEventListener('input', update);
+      document.getElementById('quoteForm').addEventListener('change', update);
+      update();
+    })();
+
+    // ── Progressive form reveal ───────────────────────────────────────────
+    // Each section stays locked (heading visible, fields hidden) until the
+    // previous section's required fields are valid, so the form reads as one
+    // small step at a time instead of a wall of fields.
+    (function () {
+      var form = document.getElementById('quoteForm');
+      if (!form) return;
+
+      // Wrap each section heading + the nodes that follow it into a .form-step
+      var kids = Array.prototype.slice.call(form.children);
+      var steps = [];
+      var current = null;
+      kids.forEach(function (node) {
+        if (node.classList && node.classList.contains('form-section-heading')) {
+          current = document.createElement('div');
+          current.className = 'form-step';
+          form.insertBefore(current, node);
+          current.appendChild(node);
+          steps.push(current);
+        } else if (current) {
+          current.appendChild(node);
+        }
+      });
+      if (steps.length < 2) return;
+
+      // A silent lock leaves people stuck with no idea why, so each locked
+      // section says what it's waiting on.
+      var HINTS = [
+        null,
+        null,
+        'Choose a quantity, water variety and use case above to continue',
+        null,
+        'Let us know where you&rsquo;re at with design above to continue'
+      ];
+      steps.forEach(function (s, i) {
+        if (i === 0) return;
+        s.classList.add('form-step-locked');
+        if (!HINTS[i]) return;      // step 2 needs no prompt — it's obvious you start at the top
+        var hint = document.createElement('p');
+        hint.className = 'step-hint';
+        hint.innerHTML = HINTS[i];
+        s.insertBefore(hint, s.children[1] || null);
+      });
+
+      function val(id) { var el = document.getElementById(id); return el && el.value.trim(); }
+      function visible(el) { return el && el.offsetParent !== null; }
+
+      function step1Done() {
+        var e = document.getElementById('email');
+        return val('firstName') && val('lastName') && e && /.+@.+\..+/.test(e.value);
+      }
+      function step2Done() {
+        return form.querySelector('input[name="quantity"]:checked') && val('variety') && val('useCase');
+      }
+      function step3Done() {
+        var z = val('delivZip');
+        if (!z || z.replace(/\D/g, '').length < 5) return false;
+        // the delivery-site question only appears once a ZIP is in
+        if (visible(document.getElementById('delivSiteField'))) {
+          return !!val('deliverySite');
+        }
+        return true;
+      }
+      function step4Done() {
+        return !!val('artworkStatus');
+      }
+      var checks = [step1Done, step2Done, step3Done, step4Done];
+
+      // Only the next locked section shows its hint — four stacked hints is noise.
+      function markNext() {
+        var found = false;
+        steps.forEach(function (s) {
+          var locked = s.classList.contains('form-step-locked');
+          s.classList.toggle('is-next', locked && !found);
+          if (locked) found = true;
+        });
+      }
+
+      function update() {
+        for (var i = 0; i < checks.length && i + 1 < steps.length; i++) {
+          if (checks[i]()) steps[i + 1].classList.remove('form-step-locked');
+          else break; // reveal is one-way: classes are only ever removed
+        }
+        markNext();
+      }
+      form.addEventListener('input', update);
+      form.addEventListener('change', update);
+      update();
+    })();
+
+    // Recurring orders are a different planning problem, so capture the cadence.
+    (function () {
+      var cb = document.getElementById('recurringOrder');
+      var field = document.getElementById('recurringFreqField');
+      var sel = document.getElementById('recurringFreq');
+      if (!cb || !field) return;
+      cb.addEventListener('change', function () {
+        field.style.display = cb.checked ? '' : 'none';
+        if (!cb.checked && sel) sel.value = '';
+      });
+    })();
+
+    // Multiple designs changes the print maths (one print run per design), so
+    // surface it when it applies. Picking "Both — Still & Sparkling" already
+    // implies two designs, since the cans have to be tellable apart, so tick it
+    // for them rather than asking a question the form can already answer.
+    (function () {
+      var cb = document.querySelector('input[name="multipleDesigns"]');
+      var note = document.getElementById('multiDesignNote');
+      var variety = document.getElementById('variety');
+      if (!cb || !note) return;
+
+      var GENERIC = 'Minimum order quantity applies per design.';
+      var BOTH = 'Still and sparkling need different labeling, which requires two designs. Minimum order quantity applies per design.';
+      var autoSet = false;
+
+      function render() {
+        note.innerHTML = (autoSet && cb.checked) ? BOTH : GENERIC;
+        note.hidden = !cb.checked;
+      }
+
+      cb.addEventListener('change', function () {
+        autoSet = false;          // they've taken ownership of the answer
+        render();
+      });
+
+      if (variety) {
+        variety.addEventListener('change', function () {
+          if (variety.value === 'both') {
+            if (!cb.checked) { cb.checked = true; autoSet = true; }
+          } else if (autoSet) {
+            cb.checked = false; autoSet = false;
+          }
+          render();
+        });
+      }
+
+      render();
+    })();
+
+    // "Other" needs somewhere to say what "other" was.
+    (function () {
+      var sel = document.getElementById('hearAbout');
+      var box = document.getElementById('hearAboutOtherField');
+      var input = document.getElementById('hearAboutOther');
+      if (!sel || !box) return;
+      sel.addEventListener('change', function () {
+        var other = sel.value === 'Other';
+        box.style.display = other ? '' : 'none';
+        if (!other) input.value = '';
       });
     })();
 
@@ -1252,13 +1655,50 @@
     quoteForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      var first   = document.getElementById('firstName').value.trim();
-      var email   = document.getElementById('email').value.trim();
-      var variety = document.getElementById('variety').value;
-      var qty     = document.querySelector('input[name="quantity"]:checked');
+      // Every required field, in the order they appear on the form, so the
+      // first thing we flag is the first thing they'd scroll to.
+      var checks = [
+        { el: document.getElementById('firstName') },
+        { el: document.getElementById('lastName')  },
+        { el: document.getElementById('email')     },
+        { el: document.getElementById('variety')   },
+        { el: document.getElementById('useCase')   },
+        { group: 'quantity',     anchor: document.querySelector('.qty-grid')   },
+        { el: document.getElementById('delivZip')  },
+        { el: document.getElementById('deliverySite') },
+        { el: document.getElementById('artworkStatus') },
+        { el: document.getElementById('hearAbout') },
+        { el: document.getElementById('hearAboutOther'), onlyIfVisible: true }
+      ];
 
-      if (!first || !email || !variety || !qty) {
-        alert('Please fill in all required fields.');
+      var errorBox = document.getElementById('formError');
+      document.querySelectorAll('.field-invalid').forEach(function (n) { n.classList.remove('field-invalid'); });
+      errorBox.style.display = 'none';
+
+      // Collect every blank field, not just the first — otherwise an empty form
+      // means submitting once per missing field to discover them one at a time.
+      var missing = [];
+      checks.forEach(function (c) {
+        if (c.group) {
+          // a hidden group (delivery site before a ZIP is in) isn't required yet
+          if (!c.anchor || c.anchor.offsetParent === null) return;
+          if (!document.querySelector('input[name="' + c.group + '"]:checked')) missing.push(c);
+        } else if (c.onlyIfVisible && (!c.el || c.el.offsetParent === null)) {
+          return;                                   // hidden "Other" box isn't required
+        } else if (!c.el || !c.el.value.trim()) {
+          missing.push(c);
+        }
+      });
+
+      if (missing.length) {
+        missing.forEach(function (c) { (c.anchor || c.el).classList.add('field-invalid'); });
+        errorBox.textContent = 'Please complete the required fields highlighted below.';
+        errorBox.style.display = 'block';
+        var firstTarget = missing[0].anchor || missing[0].el;
+        firstTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (missing[0].el && missing[0].el.focus) {
+          setTimeout(function () { missing[0].el.focus(); }, 300);
+        }
         return;
       }
 
@@ -1275,6 +1715,7 @@
       .then(function(r) { return r.json(); })
       .then(function(res) {
         if (res.success) {
+          document.getElementById('formError').style.display = 'none';
           document.getElementById('successBanner').style.display = 'block';
           document.getElementById('successBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
           btn.textContent = 'Request My Quote →';
