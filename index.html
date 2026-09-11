@@ -370,6 +370,71 @@
   </section>
 
   <!-- WHO IT'S FOR -->
+  <!-- CONVERSION STAT -->
+  <section class="conv-stat-section">
+    <div class="conv-stat-inner conv-stat-inner--single">
+      <div class="conv-stat-col">
+        <div class="conv-stat-num" id="convStatNum">0%</div>
+        <p class="conv-stat-lead">of your customers already drink water</p>
+        <div class="conv-stat-cans" id="convStatCans" aria-hidden="true"></div>
+        <p class="conv-stat-copy">No other product can promise that.</p>
+      </div>
+    </div>
+    <script>
+      (function() {
+        var section = document.querySelector('.conv-stat-section');
+        var numEl = document.getElementById('convStatNum');
+        var cansWrap = document.getElementById('convStatCans');
+        if (!section || !numEl || !cansWrap) return;
+
+        // 10 cans, all full = 100%
+        var fills = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        var html = '';
+        fills.forEach(function(f, i) {
+          html +=
+            '<svg viewBox="0 0 36 88">' +
+              '<defs><clipPath id="csCanClip' + i + '"><rect x="7" y="12" width="22" height="70" rx="5"/></clipPath></defs>' +
+              // fill (clipped to body, scales up from the bottom)
+              '<g clip-path="url(#csCanClip' + i + ')">' +
+                '<rect class="cs-fill" x="7" y="12" width="22" height="70" fill="#1D2535" style="--f:' + f + ';transition-delay:' + (i * 90) + 'ms"/>' +
+              '</g>' +
+              // outlines: lid + body
+              '<rect x="10" y="5" width="16" height="4" rx="2" fill="none" stroke="#9AA4B2" stroke-width="1.5"/>' +
+              '<rect x="7" y="12" width="22" height="70" rx="5" fill="none" stroke="' + (f > 0 ? '#1D2535' : '#9AA4B2') + '" stroke-width="1.5"/>' +
+            '</svg>';
+        });
+        cansWrap.innerHTML = html;
+
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function run() {
+          section.classList.add('cs-inview');
+          var start = null, dur = 1200;
+          function tick(ts) {
+            if (!start) start = ts;
+            var p = Math.min(1, (ts - start) / dur);
+            var e = 1 - Math.pow(1 - p, 3); // ease-out cubic
+            numEl.textContent = Math.round(100 * e) + '%';
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }
+        if (reduced) {
+          numEl.textContent = '100%';
+          section.classList.add('cs-inview');
+          return;
+        }
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) { run(); io.disconnect(); }
+          }, { threshold: 0.35 });
+          io.observe(section);
+        } else {
+          run();
+        }
+      })();
+    </script>
+  </section>
+
   <section id="use-cases">
     <div class="container">
       <div class="use-cases-head">
@@ -541,6 +606,40 @@
         <img src="Custom Can Portfolio/12.png"     alt="Reserve — custom branded canned water" />
         <img src="Custom Can Portfolio/x3.png"    alt="Cooler Water — custom branded canned water" />
         <img src="Custom Can Portfolio/x.png"      alt="Cooler Water — custom branded canned water" />
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT CALLOUT -->
+  <section class="statcallout-section statcallout-bold">
+    <div class="statcallout-grid">
+      <div class="statcallout-row">
+        <div class="statcallout-number">90%</div>
+        <div class="statcallout-text">
+          <div class="statcallout-label">of people say a branded product improves how they see a brand.</div>
+          <div class="statcallout-source">Source: PPAI &amp; ASI brand recall research</div>
+        </div>
+      </div>
+      <div class="statcallout-row">
+        <div class="statcallout-number">79%</div>
+        <div class="statcallout-text">
+          <div class="statcallout-label">of people say a branded gift makes them more likely to do business with that company.</div>
+          <div class="statcallout-source">Source: 2026 ASI Global Advertising Impressions Study</div>
+        </div>
+      </div>
+      <div class="statcallout-row">
+        <div class="statcallout-number">432</div>
+        <div class="statcallout-text">
+          <div class="statcallout-label">Can minimum &mdash; 18 cases, no pallet commitment required.</div>
+          <div class="statcallout-source">Our low MOQ vs. industry standard</div>
+        </div>
+      </div>
+      <div class="statcallout-row">
+        <div class="statcallout-number">2 Weeks</div>
+        <div class="statcallout-text">
+          <div class="statcallout-label">Fastest turnaround from artwork approval to cans shipped.</div>
+          <div class="statcallout-source">Full Wrap Adhesive Label, subject to availability</div>
+        </div>
       </div>
     </div>
   </section>

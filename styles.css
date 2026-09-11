@@ -2596,3 +2596,85 @@
     @media (max-width: 520px) {
       .nav-links .nav-link { display: none; }
     }
+
+
+    /* ─── CONVERSION STAT (100% already drink water) ─── */
+    .conv-stat-section { padding: 5rem 1.5rem; background: var(--off-white); }
+    .conv-stat-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1px 1fr; gap: 3rem; align-items: center;
+    }
+    @media (max-width: 860px) { .conv-stat-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .conv-stat-inner--single { grid-template-columns: 1fr; max-width: 640px; }
+    .conv-stat-divider { background: var(--gray-200); align-self: stretch; }
+    @media (max-width: 860px) { .conv-stat-divider { height: 1px; width: 100%; } }
+    .conv-stat-col { text-align: center; }
+    .conv-stat-num {
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .conv-stat-lead {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--charcoal);
+      max-width: 30ch;
+      margin: 1rem auto 2.25rem;
+    }
+    .conv-stat-cans { display: flex; justify-content: center; align-items: flex-end; gap: 0.65rem; flex-wrap: wrap; }
+    .conv-stat-cans svg { width: 30px; height: 74px; display: block; }
+    @media (max-width: 480px) { .conv-stat-cans svg { width: 22px; height: 54px; } .conv-stat-cans { gap: 0.45rem; } }
+    .cs-fill {
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transform-box: fill-box;
+      transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+    }
+    .cs-inview .cs-fill { transform: scaleY(var(--f)); }
+    .conv-stat-copy {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--gray-600);
+      max-width: 40ch;
+      margin: 1.5rem auto 0;
+    }
+    .conv-stat-source { font-size: 0.68rem; color: var(--gray-400); margin-top: 1rem; letter-spacing: 0.02em; }
+    .conv-stat-cta { font-size: 0.9rem; color: var(--gray-600); margin-top: 1.25rem; }
+    .conv-stat-cta a { color: var(--navy); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      .cs-fill { transition: none; }
+    }
+
+
+    /* ─── STAT CALLOUT GRID (4 stats) ───────────────── */
+    .statcallout-section { padding: 4.5rem 1.5rem; background: var(--white); }
+    .statcallout-grid {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0 3.5rem;
+    }
+    @media (max-width: 720px) { .statcallout-grid { grid-template-columns: 1fr; gap: 0; } }
+    .statcallout-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      padding: 2rem 0; border-top: 1px solid var(--gray-200);
+    }
+    .statcallout-grid > .statcallout-row:nth-child(1),
+    .statcallout-grid > .statcallout-row:nth-child(2) { border-top: none; }
+    @media (max-width: 720px) {
+      .statcallout-grid > .statcallout-row:nth-child(2) { border-top: 1px solid var(--gray-200); }
+      /* Stack number-first, text below — reads top-down on a narrow screen instead of
+         a wrapped caption floating next to a number off to the side. */
+      .statcallout-row {
+        flex-direction: column; align-items: flex-start; gap: 0.4rem;
+      }
+    }
+    .statcallout-text { max-width: 30ch; }
+    .statcallout-label { font-size: 0.88rem; line-height: 1.55; color: var(--gray-600); }
+    .statcallout-source { font-size: 0.65rem; color: var(--gray-400); margin-top: 0.6rem; letter-spacing: 0.02em; }
+    .statcallout-number {
+      font-size: clamp(2.25rem, 4.5vw, 3.25rem); font-weight: 700; color: var(--navy);
+      letter-spacing: -0.02em; line-height: 1; white-space: nowrap; flex-shrink: 0;
+    }
