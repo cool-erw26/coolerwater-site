@@ -834,6 +834,33 @@
                 <input type="text" id="delivState" name="delivState" maxlength="2" readonly style="background:var(--off-white);color:var(--gray-500);text-transform:uppercase;" />
               </div>
             </div>
+
+            <div class="field" style="margin-top:1.1rem;margin-bottom:0;">
+              <span class="qty-label">What kind of place is it going to? <span style="color:#c0392b;">*</span></span>
+              <div class="deliv-grid">
+                <div class="deliv-opt">
+                  <input type="radio" name="deliverySite" id="ds1" value="Warehouse or loading dock" required />
+                  <label for="ds1">Warehouse or loading dock</label>
+                </div>
+                <div class="deliv-opt">
+                  <input type="radio" name="deliverySite" id="ds2" value="Office building" />
+                  <label for="ds2">Office building</label>
+                </div>
+                <div class="deliv-opt">
+                  <input type="radio" name="deliverySite" id="ds3" value="Hotel, venue or event space" />
+                  <label for="ds3">Hotel, venue or event space</label>
+                </div>
+                <div class="deliv-opt">
+                  <input type="radio" name="deliverySite" id="ds4" value="Home or residential" />
+                  <label for="ds4">Home or residential</label>
+                </div>
+                <div class="deliv-opt deliv-opt-wide">
+                  <input type="radio" name="deliverySite" id="ds5" value="Not sure yet" />
+                  <label for="ds5">Not sure yet &mdash; we can figure it out together</label>
+                </div>
+              </div>
+              <p class="deliv-help">Your order ships on a pallet by freight truck. Knowing the type of place tells us what the driver needs to get it off the truck &mdash; a warehouse can unload it directly, most other places need the truck to bring its own lift. We handle the arrangements either way; it just changes the freight cost.</p>
+            </div>
             <p style="margin-top:0.6rem;font-size:0.72rem;color:var(--gray-400);line-height:1.5;">Freight is estimated based on quantity, production date, and delivery destination — included in your custom quote.</p>
 
             <div class="form-divider"></div>

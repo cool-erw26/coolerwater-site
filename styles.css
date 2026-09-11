@@ -2678,3 +2678,59 @@
       font-size: clamp(2.25rem, 4.5vw, 3.25rem); font-weight: 700; color: var(--navy);
       letter-spacing: -0.02em; line-height: 1; white-space: nowrap; flex-shrink: 0;
     }
+
+    /* ─── DELIVERY SITE TYPE (freight quoting) ───────── */
+    .deliv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .deliv-opt { position: relative; }
+    .deliv-opt-wide { grid-column: 1 / -1; }
+
+    .deliv-opt input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+
+    .deliv-opt label {
+      display: block;
+      text-align: left;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: all 0.15s;
+      margin: 0;
+      letter-spacing: 0;
+      text-transform: none;
+      background: none;
+    }
+
+    .deliv-opt input[type="radio"]:checked + label {
+      border-color: var(--navy);
+      background: rgba(10,30,63,0.05);
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .deliv-opt label:hover { border-color: var(--gray-400); color: var(--charcoal); }
+    .deliv-opt input[type="radio"]:focus-visible + label { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+    .deliv-help {
+      margin-top: 0.65rem;
+      font-size: 0.72rem;
+      color: var(--gray-400);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 560px) {
+      .deliv-grid { grid-template-columns: 1fr; }
+    }
