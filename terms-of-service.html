@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <title>Terms of Service | Cooler Water</title>
+  <meta name="description" content="Terms of Service for Cooler Water, a brand of COOLER DRINKS LLC — custom branded still and sparkling canned spring water." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://coolerwater.com/terms-of-service" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #1D2535;
+      --navy-mid:   #252e42;
+      --teal:       #1D4D47;
+      --teal-light: #2a6b63;
+      --white:      #ffffff;
+      --off-white:  #F6F7F9;
+      --gray-100:   #ECEEF1;
+      --gray-200:   #D8DCE3;
+      --gray-400:   #9AA4B2;
+      --gray-600:   #56616F;
+      --charcoal:   #181D25;
+      --radius:     0.75rem;
+      --radius-sm:  0.5rem;
+      --max-w:      1120px;
+      --bar-h:      0px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ─── ANNOUNCEMENT BAR ───────────────────────────── */
+    .announcement-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 201;
+      background: var(--navy);
+      color: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.55rem 1.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.015em;
+      line-height: 1.45;
+    }
+    .announcement-bar em { font-style: italic; opacity: 0.78; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: var(--bar-h); left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.125rem 2.5rem;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .nav-logo { display: inline-block; text-decoration: none; line-height: 1; }
+    .nav-logo img { height: 99px; width: auto; display: block; filter: none; }
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      white-space: nowrap; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.04em;
+      color: rgba(29,37,53,0.5); text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy) !important; color: var(--white) !important; padding: 0.5rem 1.25rem !important;
+      border-radius: var(--radius-sm) !important; font-weight: 600 !important; letter-spacing: 0.02em !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.88 !important; }
+    @media (max-width: 1020px) {
+      .nav-item { display: none; }
+      .nav-links { gap: 1rem; }
+      nav { padding: 1rem 1.25rem; }
+    }
+
+    .container { max-width: var(--max-w); margin: 0 auto; }
+
+    /* ─── LEGAL CONTENT ───────────────────────────── */
+    .legal-hero {
+      max-width: var(--max-w);
+      margin: calc(var(--bar-h) + 132px) auto 0;
+      padding: 0 1.5rem 2.5rem;
+    }
+    .legal-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: var(--navy);
+      line-height: 1.08;
+      margin-bottom: 0.75rem;
+    }
+    .legal-updated { font-size: 0.85rem; color: var(--gray-600); }
+    .legal-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+    .legal-body section { margin-bottom: 2.5rem; }
+    .legal-body h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.85rem;
+    }
+    .legal-body p { font-size: 0.92rem; line-height: 1.75; color: var(--gray-600); margin-bottom: 0.85rem; }
+    .legal-body p:last-child { margin-bottom: 0; }
+    .legal-body ul { margin: 0 0 0.85rem 1.25rem; }
+    .legal-body li { font-size: 0.92rem; line-height: 1.75; color: var(--gray-600); margin-bottom: 0.4rem; }
+    .legal-body a { color: var(--navy); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .legal-intro { font-size: 0.98rem; line-height: 1.75; color: var(--gray-600); margin-bottom: 3rem; }
+
+    /* ─── FOOTER (matches the rest of the site) ─────── */
+    footer { background: var(--charcoal); color: rgba(255,255,255,0.35); overflow: hidden; }
+    .footer-main {
+      max-width: var(--max-w); margin: 0 auto; padding: 5rem 2.5rem 4rem;
+      display: grid; grid-template-columns: 1.4fr 340px; gap: 4rem; align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-quote {
+      font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2rem, 3.25vw, 3rem);
+      line-height: 1.1; color: var(--white); letter-spacing: -0.035em; margin-bottom: 2.5rem;
+    }
+    .footer-quote em { font-style: normal; color: var(--white); }
+    .footer-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-contact-row {
+      display: flex; flex-direction: column; gap: 1rem; margin-top: 1.75rem; padding-top: 1.75rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-contact-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .footer-contact-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .footer-contact-link { font-size: 1.05rem; font-weight: 600; color: var(--white); text-decoration: none; letter-spacing: -0.01em; transition: opacity 0.2s; }
+    .footer-contact-link:hover { opacity: 0.7; }
+    .footer-cta {
+      display: inline-block; background: var(--white); color: var(--charcoal) !important; font-size: 0.75rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none !important;
+      padding: 0.875rem 2rem; border-radius: var(--radius-sm); white-space: nowrap; transition: opacity 0.2s;
+    }
+    .footer-cta:hover { opacity: 0.85; }
+    .footer-right-col { display: flex; flex-direction: column; gap: 1.5rem; }
+    #can3d-wrap { height: 420px; position: relative; }
+    .footer-bottom {
+      padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.8rem; flex-wrap: wrap; gap: 0.75rem; max-width: var(--max-w); margin: 0 auto;
+    }
+    .footer-legal-links { display: flex; gap: 1rem; }
+    .footer-signature { display: flex; justify-content: center; padding: 1.5rem 1rem 0; }
+    .footer-signature img {
+      width: clamp(280px, 46vw, 720px); height: auto; display: block;
+      filter: brightness(0) invert(1); opacity: 0.06; user-select: none; pointer-events: none;
+    }
+    footer strong { color: rgba(255,255,255,0.6); font-weight: 600; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    @media (max-width: 920px) {
+      .footer-main { grid-template-columns: 1fr; }
+      #can3d-wrap { height: 380px; }
+    }
+    @media (max-width: 560px) {
+      .footer-quote { font-size: 1.9rem; }
+      .footer-main { padding: 3.5rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">
+      <img src="images/Updated Logo.png?v=2" alt="Cooler Water — custom branded canned water" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="/#how-it-works">How It Works</a></li>
+      <li class="nav-item"><a href="/#the-water">The Water</a></li>
+      <li class="nav-item"><a href="/#use-cases">Use Cases</a></li>
+      <li><a href="/#get-quote" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- LEGAL CONTENT -->
+  <div class="legal-hero">
+    <h1>Terms of Service</h1>
+    <div class="legal-updated">Last updated: October 2026</div>
+  </div>
+
+  <div class="legal-body">
+    <p class="legal-intro">These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the Cooler Water website and your purchase of custom branded canned water and related products (the &ldquo;Products&rdquo;) from COOLER DRINKS LLC (&ldquo;Cooler Water,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By placing an order, requesting a quote, or otherwise using our site, you agree to these Terms. If you do not agree, please do not use the site or place an order.</p>
+
+    <section>
+      <h2>1. Eligibility &amp; Authorized Use</h2>
+      <p>You must be at least 18 years old and legally authorized to enter into a binding agreement on behalf of yourself or the business you represent to place an order with Cooler Water. You agree to use our site and Products only for lawful purposes and in compliance with all applicable federal, state, and local laws.</p>
+    </section>
+
+    <section>
+      <h2>2. Custom Orders, Artwork &amp; Intellectual Property</h2>
+      <p>Every Cooler Water order is custom-manufactured to your specifications &mdash; your logo, artwork, and label design. By submitting artwork, logos, or other materials (&ldquo;Submitted Materials&rdquo;), you represent and warrant that you own the rights to that material or have the necessary permissions and licenses to use and reproduce it, and that its use will not infringe the intellectual property or other rights of any third party.</p>
+      <p>You grant Cooler Water a non-exclusive, royalty-free license to reproduce, print, and display your Submitted Materials solely for the purpose of producing your order, preparing design proofs and renders, and &mdash; unless you tell us otherwise in writing &mdash; for reasonable portfolio, marketing, and promotional use (for example, featuring finished cans on our website or social media).</p>
+      <p>All new orders include a detailed 3D render for your review and approval before production begins, so you can confirm the design, layout, and labeling before anything goes to print. Production does not start until you approve your proof.</p>
+    </section>
+
+    <section>
+      <h2>3. Products, Pricing &amp; Order Modifications</h2>
+      <p>All Products are custom-manufactured to your specifications and are not stock inventory. Pricing is provided in a written custom quote based on quantity, print method, artwork, and delivery destination. Product photos, renders, and mockups are illustrative representations of the finished can and are not a guarantee of exact color, finish, or material appearance.</p>
+      <p>Pricing, specifications, and estimated timelines are subject to change at any time prior to your order being confirmed and production commencing. We reserve the right, in our sole discretion, to decline, modify, or cancel any order &mdash; including after payment has been submitted &mdash; for reasons such as pricing or specification errors, artwork or capacity issues, or suspected fraud, in which case we will refund any payment received for the cancelled order.</p>
+    </section>
+
+    <section>
+      <h2>4. Production Variance, Overruns &amp; Underruns</h2>
+      <p>Estimated production and shipping timelines are provided in good faith based on current capacity and are not guaranteed delivery dates. Rush production may be available depending on capacity; please contact us to inquire.</p>
+      <p>Custom can manufacturing inherently involves startup and shutdown losses, in-line quality testing, calibration, and packaging waste. As a result, your final delivered quantity may run slightly over or under the quantity ordered, and a portion of the run may be inspected, tested, or discarded as part of normal production. Reasonable overages and shortages, along with minor variances in color match or label placement, are standard industry practice. <strong>Production variances within normal industry tolerances do not constitute a defect, breach of these Terms, or grounds for a refund, replacement, or chargeback.</strong></p>
+    </section>
+
+    <section>
+      <h2>5. Shipping, Delivery, Risk of Loss &amp; Multi-Location Orders</h2>
+      <p>Delivery dates provided by Cooler Water or our carriers are estimates only and are not guaranteed. Once your order is handed off to the shipping carrier, title and risk of loss pass to you &mdash; Cooler Water is not responsible for loss, theft, delay, or damage caused by the carrier once it is in the carrier&rsquo;s possession. You are responsible for inspecting your shipment upon arrival and filing any claims directly with the carrier for freight damage or loss.</p>
+      <p>Orders ship by palletized freight. Parcel or small-package shipping is considered on a case-by-case basis by request. If you request or agree to parcel/small-package shipping, you acknowledge and accept the increased risk of damage, loss, or delay inherent in that shipping method. Freight is estimated separately based on quantity, production date, and delivery destination, and is included in your custom quote.</p>
+      <p>We can accommodate multi-stop tours, phased rollouts, or shipments split across multiple locations on a coordinated schedule &mdash; let your account contact know your shipping plan and destinations when you place your order or request a quote so we can plan accordingly.</p>
+    </section>
+
+    <section>
+      <h2>6. Billing, Payment &amp; Chargebacks</h2>
+      <p>You agree to provide accurate, current billing information and authorize Cooler Water to charge the payment method on file for your order, including any deposits, balances, and agreed change orders. Payment is due according to the terms provided in your custom quote invoice. For custom quotes, production does not begin until payment (or an agreed deposit) has been received and your design proof has been approved.</p>
+      <p>Because Products are custom-manufactured for you specifically, you agree not to initiate a chargeback or payment dispute for reasons related to production variance within normal industry tolerance, carrier-caused delay or damage after handoff, or your own change of mind. <strong>Improper chargebacks constitute a material breach. Company reserves the right to recover disputed amounts, administrative fees, collection costs, and legal expenses.</strong></p>
+    </section>
+
+    <section>
+      <h2>7. Cancellations &amp; Returns</h2>
+      <p>Because every order is custom-manufactured to your specifications, <strong>no cancellations or refunds are permitted once an order is placed &mdash; all sales are final</strong>, except as required by applicable law. This applies whether or not production has begun. If your order arrives damaged, incorrect, or with a defect outside normal production variance, contact us within 14 days of delivery so we can make it right.</p>
+    </section>
+
+    <section>
+      <h2>8. Container Deposit (CRV) &amp; Recycling Compliance</h2>
+      <p>Some states require a container deposit (such as CRV) or impose recycling-related labeling and reporting obligations on beverages sold within their borders. As the purchaser and, where applicable, seller or distributor of the Products, you are solely responsible for determining and complying with any container deposit, recycling, or related regulatory requirements in the jurisdictions where your Products are distributed or sold.</p>
+    </section>
+
+    <section>
+      <h2>9. Disclaimer of Warranties</h2>
+      <p>Except as expressly stated in these Terms, the Products and our site are provided &ldquo;as is&rdquo; and &ldquo;as available,&rdquo; without warranties of any kind, whether express or implied, including implied warranties of merchantability, fitness for a particular purpose, or non-infringement, to the fullest extent permitted by law.</p>
+    </section>
+
+    <section>
+      <h2>10. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, Cooler Water&rsquo;s total liability arising out of or relating to your order or these Terms will not exceed the amount you paid for the Products giving rise to the claim. In no event will Cooler Water be liable for indirect, incidental, special, consequential, or punitive damages, including lost profits or business interruption, even if advised of the possibility of such damages.</p>
+    </section>
+
+    <section>
+      <h2>11. Indemnification</h2>
+      <p>You agree to indemnify and hold Cooler Water, its officers, employees, and affiliates harmless from any claims, damages, losses, or expenses (including reasonable attorneys&rsquo; fees) arising out of your Submitted Materials, your use of the Products, or your failure to comply with applicable laws, including container deposit and recycling regulations.</p>
+    </section>
+
+    <section>
+      <h2>12. Force Majeure</h2>
+      <p>Cooler Water will not be liable for any delay or failure to perform resulting from causes outside our reasonable control, including acts of God, natural disasters, labor disputes, material or carrier shortages, or other events of force majeure.</p>
+    </section>
+
+    <section>
+      <h2>13. Termination</h2>
+      <p>We may suspend or refuse service to any customer who violates these Terms or engages in fraudulent, abusive, or unlawful conduct related to our site or Products.</p>
+    </section>
+
+    <section>
+      <h2>14. Governing Law</h2>
+      <p>These Terms are governed by the laws of the United States and the state in which COOLER DRINKS LLC is organized, without regard to conflict-of-law principles, and any disputes will be resolved in the courts located in that state.</p>
+    </section>
+
+    <section>
+      <h2>15. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. Changes take effect once posted to this page; continued use of our site or Products after changes are posted means you accept the updated Terms. We&rsquo;ll update the &ldquo;Last updated&rdquo; date above whenever we do.</p>
+    </section>
+
+    <section>
+      <h2>16. Contact Us</h2>
+      <p>Questions about these Terms? Reach out to us at <a href="mailto:hello@coolerwater.com">hello@coolerwater.com</a>.</p>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-main">
+      <div class="footer-left">
+        <div class="footer-quote"><em>The one branded item nobody leaves behind.</em></div>
+        <div class="footer-actions">
+          <a href="/#get-quote" class="footer-cta">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-right-col">
+        <div class="footer-contact-row">
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Inquiries &amp; Questions</span>
+            <a href="mailto:hello@coolerwater.com" class="footer-contact-link">hello@coolerwater.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Call Us</span>
+            <a href="tel:+17862921127" class="footer-contact-link">(786) 292-1127</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Stay Connected</span>
+            <a href="https://instagram.com/coolercannedwater" target="_blank" rel="noopener" class="footer-contact-link">@coolercannedwater</a>
+          </div>
+        </div>
+        <div id="can3d-wrap">
+          <img src="images/wilson-cans-miami-event.jpg" alt="Wilson custom branded canned water — Miami event activation" style="width:100%;height:100%;object-fit:cover;border-radius:0.75rem;" />
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span><strong>Cooler Water</strong> &mdash; Custom Branded Canned Water by COOLER DRINKS LLC</span>
+      <div class="footer-legal-links"><a href="/terms-of-service">Terms of Service</a></div>
+      <span>&copy; 2026 COOLER DRINKS LLC. All rights reserved.</span>
+    </div>
+    <div class="footer-signature" aria-hidden="true">
+      <img src="images/Updated Logo.png?v=2" alt="" />
+    </div>
+  </footer>
+
+</body>
+</html>

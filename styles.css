@@ -2382,6 +2382,12 @@
 
     footer a:hover { color: var(--white); }
 
+    .footer-terms {
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.35);
+    }
+
     @media (max-width: 920px) {
       .footer-main { grid-template-columns: 1fr; }
       #can3d-wrap { height: 380px; }
